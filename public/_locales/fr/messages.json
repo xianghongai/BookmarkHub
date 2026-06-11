@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - synchroniser les signets",
+        "message": "BookmarkHub-- - synchroniser les signets",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub, synchroniser les signets entre différents navigateurs",
+        "message": "BookmarkHub--, synchronisation simple des signets via GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "Synchroniser les signets",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "Supprimer tous les signets",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "ID Gist",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Nom de fichier Gist",
+    "testConnection": {
+        "message": "Tester la connexion",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "Créer un Gist privé",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "L'ID Gist est déjà défini",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "Le Gist doit être privé",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "Fusionnez tous les signets du serveur dans le navigateur local, puis téléchargez-les vers le serveur",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "Supprimez tous les signets. Veuillez effectuer une sauvegarde au préalable.",
         "description": ""
     }
 }

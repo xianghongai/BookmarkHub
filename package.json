@@ -1,43 +1,64 @@
 {
-  "name": "bookmarkhub",
-  "description": "BookmarkHub,sync bookmarks across different browsers",
+  "name": "bookmarkhub--",
+  "description": "Simple cross-browser bookmark sync using GitHub Gist",
   "keywords": [
-    "BookmarkHub",
-    "sync bookmarks"
+    "bookmarks",
+    "browser-extension",
+    "gist",
+    "sync"
   ],
   "private": true,
-  "version": "0.0.6",
+  "version": "1.0.0",
   "type": "module",
-  "author": "dudor",
+  "packageManager": "pnpm@11.5.2",
+  "engines": {
+    "node": ">=20.12.0"
+  },
+  "author": "BookmarkHub-- contributors",
   "license": "",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xianghongai/BookmarkHub"
+  },
+  "homepage": "https://github.com/xianghongai/BookmarkHub#readme",
+  "bugs": {
+    "url": "https://github.com/xianghongai/BookmarkHub/issues"
+  },
   "scripts": {
-    "dev": "wxt",
-    "dev:firefox": "wxt -b firefox",
-    "build": "wxt build",
-    "build:firefox": "wxt build -b firefox",
-    "zip": "wxt zip",
-    "zip:firefox": "wxt zip -b firefox",
+    "dev": "wxt -b chrome --mv3",
+    "dev:chrome": "wxt -b chrome --mv3",
+    "dev:firefox": "wxt -b firefox --mv3",
+    "dev:edge": "wxt -b edge --mv3",
+    "build": "wxt build -b chrome --mv3",
+    "build:chrome": "wxt build -b chrome --mv3",
+    "build:firefox": "wxt build -b firefox --mv3",
+    "build:edge": "wxt build -b edge --mv3",
+    "build:all": "pnpm run build:chrome && pnpm run build:firefox && pnpm run build:edge",
+    "zip": "wxt zip -b chrome --mv3",
+    "zip:chrome": "wxt zip -b chrome --mv3",
+    "zip:firefox": "wxt zip -b firefox --mv3",
+    "zip:edge": "wxt zip -b edge --mv3",
+    "zip:all": "pnpm run zip:chrome && pnpm run zip:firefox && pnpm run zip:edge",
     "compile": "tsc --noEmit",
     "postinstall": "wxt prepare"
   },
   "dependencies": {
-    "bootstrap": "^4.6.0",
-    "ky": "^1.7.3",
-    "lz-string": "^1.5.0",
-    "react": "^18.3.1",
-    "react-bootstrap": "^1.5.2",
-    "react-dom": "^18.3.1",
-    "react-hook-form": "^6.15.5",
-    "react-icons": "^5.4.0",
+    "bootstrap": "^5.3.8",
+    "ky": "^2.0.2",
+    "react": "^19.2.7",
+    "react-bootstrap": "^2.10.10",
+    "react-dom": "^19.2.7",
+    "react-hook-form": "^7.78.0",
+    "react-icons": "^5.6.0",
     "webext-options-sync": "^4.3.0"
   },
   "devDependencies": {
-    "@types/chrome": "^0.0.280",
-    "@types/react": "^18.3.12",
-    "@types/react-dom": "^18.3.1",
-    "@wxt-dev/auto-icons": "^1.0.2",
-    "@wxt-dev/module-react": "^1.1.1",
-    "typescript": "^5.6.3",
-    "wxt": "^0.19.13"
+    "@types/chrome": "^0.1.43",
+    "@types/react": "^19.2.17",
+    "@types/react-dom": "^19.2.3",
+    "@wxt-dev/auto-icons": "^1.1.1",
+    "@wxt-dev/module-react": "^1.2.2",
+    "typescript": "^6.0.3",
+    "wxt": "^0.20.26"
   }
 }

@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - Bookmark-Synchronisierung",
+        "message": "BookmarkHub-- - Bookmark-Synchronisierung",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub, Synchronisierung von Bookmarks zwischen verschiedenen Browsern",
+        "message": "BookmarkHub--, einfache Bookmark-Synchronisierung über GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "Bookmarks synchronisieren",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "Alle Bookmarks löschen",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "Gist-ID",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Gist-Dateiname",
+    "testConnection": {
+        "message": "Verbindung testen",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "Privaten Gist erstellen",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "Gist-ID ist bereits festgelegt",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "Der Gist muss privat sein",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "Alle Bookmarks vom Server in den lokalen Browser zusammenführen und dann auf den Server hochladen",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "Alle Bookmarks löschen. Bitte erstellen Sie vorher ein Backup.",
         "description": ""
     }
 }

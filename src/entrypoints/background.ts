@@ -1,16 +1,32 @@
 import BookmarkService from '../utils/services'
 import { Setting } from '../utils/setting'
+import { GIST_FILE_NAME } from '../utils/constants'
 import iconLogo from '../assets/icon.png'
-import { OperType, BookmarkInfo, SyncDataInfo, RootBookmarksType, BrowserType } from '../utils/models'
-import { Bookmarks } from 'wxt/browser'
+import { OperType, BookmarkInfo, SyncDataInfo, RootBookmarksType } from '../utils/models'
+import type { Browser } from 'wxt/browser'
+
+type ActionName = 'upload' | 'download' | 'setting';
+type RootFolderIds = Partial<Record<RootBookmarksType, string>>;
+
+function isActionMessage(message: unknown): message is { name: ActionName } {
+  return typeof message === 'object'
+    && message != null
+    && 'name' in message
+    && ['upload', 'download', 'setting'].includes(String(message.name));
+}
+
 export default defineBackground(() => {
-
-  browser.runtime.onInstalled.addListener(c => {
-  });
-
   let curOperType = OperType.NONE;
-  let curBrowserType = BrowserType.CHROME;
-  browser.runtime.onMessage.addListener((msg, sender, sendResponse) => {
+  let rootFolderIds: RootFolderIds = {};
+
+  browser.runtime.onMessage.addListener((
+    msg: unknown,
+    _sender: Browser.runtime.MessageSender,
+    sendResponse: (response: unknown) => void,
+  ) => {
+    if (!isActionMessage(msg)) {
+      return true;
+    }
     if (msg.name === 'upload') {
       curOperType = OperType.SYNC
       uploadBookmarks().then(() => {
@@ -30,16 +46,6 @@ export default defineBackground(() => {
       });
 
     }
-    if (msg.name === 'removeAll') {
-      curOperType = OperType.REMOVE
-      clearBookmarkTree().then(() => {
-        curOperType = OperType.NONE
-        browser.action.setBadgeText({ text: "" });
-        refreshLocalCount();
-        sendResponse(true);
-      });
-
-    }
     if (msg.name === 'setting') {
       browser.runtime.openOptionsPage().then(() => {
         sendResponse(true);
@@ -47,7 +53,7 @@ export default defineBackground(() => {
     }
     return true;
   });
-  browser.bookmarks.onCreated.addListener((id, info) => {
+  browser.bookmarks.onCreated.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onCreated", id, info)
       browser.action.setBadgeText({ text: "!" });
@@ -55,21 +61,21 @@ export default defineBackground(() => {
       refreshLocalCount();
     }
   });
-  browser.bookmarks.onChanged.addListener((id, info) => {
+  browser.bookmarks.onChanged.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onChanged", id, info)
       browser.action.setBadgeText({ text: "!" });
       browser.action.setBadgeBackgroundColor({ color: "#F00" });
     }
   })
-  browser.bookmarks.onMoved.addListener((id, info) => {
+  browser.bookmarks.onMoved.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onMoved", id, info)
       browser.action.setBadgeText({ text: "!" });
       browser.action.setBadgeBackgroundColor({ color: "#F00" });
     }
   })
-  browser.bookmarks.onRemoved.addListener((id, info) => {
+  browser.bookmarks.onRemoved.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onRemoved", id, info)
       browser.action.setBadgeText({ text: "!" });
@@ -87,22 +93,18 @@ export default defineBackground(() => {
       if (setting.gistID == '') {
         throw new Error("Gist ID Not Found");
       }
-      if (setting.gistFileName == '') {
-        throw new Error("Gist File Not Found");
-      }
       let bookmarks = await getBookmarks();
       let syncdata = new SyncDataInfo();
       syncdata.version = browser.runtime.getManifest().version;
       syncdata.createDate = Date.now();
       syncdata.bookmarks = formatBookmarks(bookmarks);
-      syncdata.browser = navigator.userAgent;
       await BookmarkService.update({
         files: {
-          [setting.gistFileName]: {
+          [GIST_FILE_NAME]: {
             content: JSON.stringify(syncdata)
           }
         },
-        description: setting.gistFileName
+        description: GIST_FILE_NAME
       });
       const count = getBookmarkCount(syncdata.bookmarks);
       await browser.storage.local.set({ remoteCount: count });
@@ -138,13 +140,20 @@ export default defineBackground(() => {
               type: "basic",
               iconUrl: iconLogo,
               title: browser.i18n.getMessage('downloadBookmarks'),
-              message: `${browser.i18n.getMessage('error')}：Gist File ${setting.gistFileName} is NULL`
+              message: `${browser.i18n.getMessage('error')}：Gist File ${GIST_FILE_NAME} is NULL`
             });
           }
           return;
         }
-        await clearBookmarkTree();
-        await createBookmarkTree(syncdata.bookmarks);
+        const cleared = await clearBookmarkTree();
+        if (!cleared) {
+          throw new Error('Failed to clear local bookmarks');
+        }
+        const createErrors: string[] = [];
+        await createBookmarkTree(syncdata.bookmarks, createErrors);
+        if (createErrors.length > 0) {
+          throw new Error(`Failed to create ${createErrors.length} bookmark item(s)`);
+        }
         const count = getBookmarkCount(syncdata.bookmarks);
         await browser.storage.local.set({ remoteCount: count });
         if (setting.enableNotify) {
@@ -161,7 +170,7 @@ export default defineBackground(() => {
           type: "basic",
           iconUrl: iconLogo,
           title: browser.i18n.getMessage('downloadBookmarks'),
-          message: `${browser.i18n.getMessage('error')}：Gist File ${setting.gistFileName} Not Found`
+          message: `${browser.i18n.getMessage('error')}：Gist File ${GIST_FILE_NAME} Not Found`
         });
       }
     }
@@ -177,28 +186,36 @@ export default defineBackground(() => {
   }
 
   async function getBookmarks() {
-    let bookmarkTree: BookmarkInfo[] = await browser.bookmarks.getTree();
-    if (bookmarkTree && bookmarkTree[0].id === "root________") {
-      curBrowserType = BrowserType.FIREFOX;
-    }
-    else {
-      curBrowserType = BrowserType.CHROME;
-    }
+    const bookmarkTree: BookmarkInfo[] = await browser.bookmarks.getTree();
+    rootFolderIds = resolveRootFolderIds(bookmarkTree);
     return bookmarkTree;
+  }
+
+  function resolveRootFolderIds(bookmarks: BookmarkInfo[]): RootFolderIds {
+    const rootNodes = bookmarks[0]?.children ?? [];
+    return {
+      [RootBookmarksType.MenuFolder]: findRootFolderId(rootNodes, undefined, ['menu________']),
+      [RootBookmarksType.ToolbarFolder]: findRootFolderId(rootNodes, 'bookmarks-bar', ['toolbar_____', '1']),
+      [RootBookmarksType.UnfiledFolder]: findRootFolderId(rootNodes, 'other', ['unfiled_____', '2']),
+      [RootBookmarksType.MobileFolder]: findRootFolderId(rootNodes, 'mobile', ['mobile______', '3']),
+    };
+  }
+
+  function findRootFolderId(
+    rootNodes: BookmarkInfo[],
+    folderType: BookmarkInfo['folderType'],
+    legacyIds: string[],
+  ) {
+    const typedNodes = folderType
+      ? rootNodes.filter(node => node.folderType === folderType)
+      : [];
+    return typedNodes.find(node => node.syncing)?.id
+      ?? typedNodes[0]?.id
+      ?? rootNodes.find(node => node.id != null && legacyIds.includes(node.id))?.id;
   }
 
   async function clearBookmarkTree() {
     try {
-      let setting = await Setting.build()
-      if (setting.githubToken == '') {
-        throw new Error("Gist Token Not Found");
-      }
-      if (setting.gistID == '') {
-        throw new Error("Gist ID Not Found");
-      }
-      if (setting.gistFileName == '') {
-        throw new Error("Gist File Not Found");
-      }
       let bookmarks = await getBookmarks();
       let tempNodes: BookmarkInfo[] = [];
       bookmarks[0].children?.forEach(c => {
@@ -213,90 +230,65 @@ export default defineBackground(() => {
           }
         }
       }
-      if (curOperType === OperType.REMOVE && setting.enableNotify) {
-        await browser.notifications.create({
-          type: "basic",
-          iconUrl: iconLogo,
-          title: browser.i18n.getMessage('removeAllBookmarks'),
-          message: browser.i18n.getMessage('success')
-        });
-      }
+      return true;
     }
     catch (error: any) {
       console.error(error);
-      await browser.notifications.create({
-        type: "basic",
-        iconUrl: iconLogo,
-        title: browser.i18n.getMessage('removeAllBookmarks'),
-        message: `${browser.i18n.getMessage('error')}：${error.message}`
-      });
+      return false;
     }
   }
 
-  async function createBookmarkTree(bookmarkList: BookmarkInfo[] | undefined) {
+  async function createBookmarkTree(bookmarkList: BookmarkInfo[] | undefined, createErrors: string[]) {
     if (bookmarkList == null) {
       return;
     }
     for (let i = 0; i < bookmarkList.length; i++) {
       let node = bookmarkList[i];
-      if (node.title == RootBookmarksType.MenuFolder
-        || node.title == RootBookmarksType.MobileFolder
-        || node.title == RootBookmarksType.ToolbarFolder
-        || node.title == RootBookmarksType.UnfiledFolder) {
-        if (curBrowserType == BrowserType.FIREFOX) {
-          switch (node.title) {
-            case RootBookmarksType.MenuFolder:
-              node.children?.forEach(c => c.parentId = "menu________");
-              break;
-            case RootBookmarksType.MobileFolder:
-              node.children?.forEach(c => c.parentId = "mobile______");
-              break;
-            case RootBookmarksType.ToolbarFolder:
-              node.children?.forEach(c => c.parentId = "toolbar_____");
-              break;
-            case RootBookmarksType.UnfiledFolder:
-              node.children?.forEach(c => c.parentId = "unfiled_____");
-              break;
-            default:
-              node.children?.forEach(c => c.parentId = "unfiled_____");
-              break;
-          }
-        } else {
-          switch (node.title) {
-            case RootBookmarksType.MobileFolder:
-              node.children?.forEach(c => c.parentId = "3");
-              break;
-            case RootBookmarksType.ToolbarFolder:
-              node.children?.forEach(c => c.parentId = "1");
-              break;
-            case RootBookmarksType.UnfiledFolder:
-            case RootBookmarksType.MenuFolder:
-              node.children?.forEach(c => c.parentId = "2");
-              break;
-            default:
-              node.children?.forEach(c => c.parentId = "2");
-              break;
-          }
+      if (isRootBookmarkType(node.title)) {
+        const parentId = getDestinationRootId(node.title);
+        if (!parentId) {
+          throw new Error(`Bookmark root folder not found: ${node.title}`);
         }
-        await createBookmarkTree(node.children);
+        node.children?.forEach(child => child.parentId = parentId);
+        await createBookmarkTree(node.children, createErrors);
         continue;
       }
 
-      let res: Bookmarks.BookmarkTreeNode = { id: '', title: '' };
       try {
-        /* 处理firefox中创建 chrome://chrome-urls/ 格式的书签会报错的问题 */
-        res = await browser.bookmarks.create({
+        const result: Browser.bookmarks.BookmarkTreeNode = await browser.bookmarks.create({
           parentId: node.parentId,
           title: node.title,
           url: node.url
         });
+        if (result.id && node.children && node.children.length > 0) {
+          node.children.forEach(child => child.parentId = result.id);
+          await createBookmarkTree(node.children, createErrors);
+        }
       } catch (err) {
-        console.error(res, err);
+        console.error(node, err);
+        createErrors.push(node.title);
       }
-      if (res.id && node.children && node.children.length > 0) {
-        node.children.forEach(c => c.parentId = res.id);
-        await createBookmarkTree(node.children);
-      }
+    }
+  }
+
+  function isRootBookmarkType(title: string): title is RootBookmarksType {
+    return Object.values(RootBookmarksType).includes(title as RootBookmarksType);
+  }
+
+  function getDestinationRootId(rootType: RootBookmarksType) {
+    switch (rootType) {
+      case RootBookmarksType.MenuFolder:
+        return rootFolderIds[RootBookmarksType.MenuFolder]
+          ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
+      case RootBookmarksType.MobileFolder:
+        return rootFolderIds[RootBookmarksType.MobileFolder]
+          ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
+      case RootBookmarksType.ToolbarFolder:
+        return rootFolderIds[RootBookmarksType.ToolbarFolder]
+          ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
+      case RootBookmarksType.UnfiledFolder:
+        return rootFolderIds[RootBookmarksType.UnfiledFolder]
+          ?? rootFolderIds[RootBookmarksType.ToolbarFolder];
     }
   }
 
@@ -325,22 +317,9 @@ export default defineBackground(() => {
   function formatBookmarks(bookmarks: BookmarkInfo[]): BookmarkInfo[] | undefined {
     if (bookmarks[0].children) {
       for (let a of bookmarks[0].children) {
-        switch (a.id) {
-          case "1":
-          case "toolbar_____":
-            a.title = RootBookmarksType.ToolbarFolder;
-            break;
-          case "menu________":
-            a.title = RootBookmarksType.MenuFolder;
-            break;
-          case "2":
-          case "unfiled_____":
-            a.title = RootBookmarksType.UnfiledFolder;
-            break;
-          case "3":
-          case "mobile______":
-            a.title = RootBookmarksType.MobileFolder;
-            break;
+        const rootType = getRootBookmarkType(a);
+        if (rootType) {
+          a.title = rootType;
         }
       }
     }
@@ -349,12 +328,38 @@ export default defineBackground(() => {
     return a.children;
   }
 
+  function getRootBookmarkType(node: BookmarkInfo): RootBookmarksType | undefined {
+    switch (node.folderType) {
+      case 'bookmarks-bar':
+        return RootBookmarksType.ToolbarFolder;
+      case 'other':
+        return RootBookmarksType.UnfiledFolder;
+      case 'mobile':
+        return RootBookmarksType.MobileFolder;
+    }
+    if (node.id === 'toolbar_____' || node.id === '1') {
+      return RootBookmarksType.ToolbarFolder;
+    }
+    if (node.id === 'menu________') {
+      return RootBookmarksType.MenuFolder;
+    }
+    if (node.id === 'unfiled_____' || node.id === '2') {
+      return RootBookmarksType.UnfiledFolder;
+    }
+    if (node.id === 'mobile______' || node.id === '3') {
+      return RootBookmarksType.MobileFolder;
+    }
+  }
+
   function format(b: BookmarkInfo): BookmarkInfo {
     b.dateAdded = undefined;
     b.dateGroupModified = undefined;
+    b.dateLastUsed = undefined;
+    b.folderType = undefined;
     b.id = undefined;
     b.index = undefined;
     b.parentId = undefined;
+    b.syncing = undefined;
     b.type = undefined;
     b.unmodifiable = undefined;
     if (b.children && b.children.length > 0) {
@@ -370,7 +375,6 @@ export default defineBackground(() => {
           syncdata.version = browser.runtime.getManifest().version;
           syncdata.createDate = Date.now();
           syncdata.bookmarks = formatBookmarks(bookmarks);
-          syncdata.browser = navigator.userAgent;
           const keyname = 'BookmarkHub_backup_' + Date.now().toString();
           await browser.storage.local.set({ [keyname]: JSON.stringify(syncdata) });
       }

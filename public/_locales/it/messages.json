@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - Sincronizzazione segnalibri",
+        "message": "BookmarkHub-- - Sincronizzazione segnalibri",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub, sincronizzazione dei segnalibri tra diversi browser",
+        "message": "BookmarkHub--, sincronizzazione semplice dei segnalibri tramite GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "Sincronizza segnalibri",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "Rimuovi tutti i segnalibri",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "ID Gist",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Nome file Gist",
+    "testConnection": {
+        "message": "Testa connessione",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "Crea Gist privato",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "L'ID Gist è già impostato",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "Il Gist deve essere privato",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "Unisci tutti i segnalibri del server nel browser locale e poi caricali sul server",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "Rimuovi tutti i segnalibri. Fai prima un backup.",
         "description": ""
     }
 }

@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - 书签同步",
+        "message": "BookmarkHub--",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub，在不同浏览器之间同步你的书签",
+        "message": "使用 GitHub Gist 进行简单的跨浏览器书签同步",
         "description": ""
     },
     "uploadBookmarks": {
@@ -18,10 +18,6 @@
     "syncBookmarks": {
         "message": "同步书签",
         "description": "把服务器上的书签全部合并到本地浏览器中，然后再上传到服务器"
-    },
-    "removeAllBookmarks": {
-        "message": "清空本地书签",
-        "description": ""
     },
     "settings": {
         "message": "设置",
@@ -47,8 +43,20 @@
         "message": "Gist ID",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Gist文件名",
+    "testConnection": {
+        "message": "测试连通性",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "创建私密 Gist",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "Gist ID 已经填写，未创建新的 Gist",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "Gist 必须是私密的",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "把服务器上的书签全部合并到本地浏览器中，然后再上传到服务器",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "清空本地浏览器书签，请先做好备份",
         "description": ""
     }
 }

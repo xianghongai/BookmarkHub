@@ -1,6 +1,6 @@
 import {
     AiOutlineCloudUpload, AiOutlineCloudDownload,
-    AiOutlineCloudSync, AiOutlineSetting, AiOutlineClear,
+    AiOutlineCloudSync, AiOutlineSetting,
     AiOutlineBook, AiOutlineInfoCircle,AiOutlineGithub
 } from 'react-icons/ai'
 
@@ -10,7 +10,6 @@ export default {
     AiOutlineCloudDownload,
     AiOutlineCloudSync,
     AiOutlineSetting,
-    AiOutlineClear,
     AiOutlineInfoCircle,
     AiOutlineGithub,
 }

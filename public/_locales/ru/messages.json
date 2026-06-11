@@ -1,10 +1,10 @@
 ﻿{
     "extensionName": {
-        "message": "BookmarkHub - синхронизация закладок ",
+        "message": "BookmarkHub-- - синхронизация закладок",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub, синхронизация закладок между разными браузерами",
+        "message": "BookmarkHub--, простая синхронизация закладок через GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "Синхронизировать закладки",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "Удалить все закладки",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "Gist ID",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Имя файла Gist",
+    "testConnection": {
+        "message": "Проверить соединение",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "Создать секретный Gist",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "Gist ID уже указан",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "Gist должен быть секретным",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "Объединить закладки на сервере и браузере, а затем выгрузить их на сервер",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "Удалить все закладки, пожалуйста сделайте резервную копию",
         "description": ""
     }
 }

@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - ブックマークを同期",
+        "message": "BookmarkHub-- - ブックマークを同期",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub、異なるブラウザ間でブックマークを同期",
+        "message": "BookmarkHub--、GitHub Gist を使用したシンプルなブックマーク同期",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "ブックマークを同期",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "全てのブックマークを削除",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "Gist ID",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Gist ファイル名",
+    "testConnection": {
+        "message": "接続をテスト",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "非公開 Gist を作成",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "Gist ID はすでに設定されています",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "Gist は非公開である必要があります",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "サーバー上の全てのブックマークをローカルブラウザにマージし、次にサーバーにアップロード",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "全てのブックマークを削除します。事前にバックアップを行ってください。",
         "description": ""
     }
 }

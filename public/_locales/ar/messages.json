@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - مزامنة العلامات المرجعية",
+        "message": "BookmarkHub-- - مزامنة العلامات المرجعية",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub، مزامنة العلامات المرجعية عبر متصفحات مختلفة",
+        "message": "BookmarkHub--، مزامنة بسيطة للعلامات المرجعية عبر GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "مزامنة العلامات المرجعية",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "إزالة جميع العلامات المرجعية",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "معرف Gist",
         "description": ""
     },
-    "gistFileName": {
-        "message": "اسم ملف Gist",
+    "testConnection": {
+        "message": "اختبار الاتصال",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "إنشاء Gist خاص",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "تم تعيين معرف Gist بالفعل",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "يجب أن يكون Gist خاصًا",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "دمج جميع العلامات المرجعية على الخادم في المتصفح المحلي، ثم قم بتحميلها إلى الخادم",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "أزل جميع العلامات المرجعية. يرجى إجراء نسخ احتياطي أولاً",
         "description": ""
     }
 }

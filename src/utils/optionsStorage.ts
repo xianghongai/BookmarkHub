@@ -5,9 +5,7 @@ export default new OptionsSync({
     defaults: {
         githubToken: '',
         gistID: '',
-        gistFileName: 'BookmarkHub',
         enableNotify: true,
-        githubURL: 'https://api.github.com',
     },
 
     // List of functions that are called when the extension is updated

@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - Sincronização de favoritos",
+        "message": "BookmarkHub-- - Sincronização de favoritos",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub, sincronização de favoritos entre diferentes navegadores",
+        "message": "BookmarkHub--, sincronização simples de favoritos via GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "Sincronizar favoritos",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "Remover todos os favoritos",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "ID do Gist",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Nome do arquivo do Gist",
+    "testConnection": {
+        "message": "Testar conexão",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "Criar Gist privado",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "O ID do Gist já está definido",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "O Gist deve ser privado",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "Combinar todos os favoritos do servidor no navegador local e depois enviar para o servidor",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "Remover todos os favoritos. Por favor, faça um backup primeiro.",
         "description": ""
     }
 }

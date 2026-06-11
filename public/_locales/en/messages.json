@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - sync bookmarks ",
+        "message": "BookmarkHub--",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub,sync bookmarks across different browsers",
+        "message": "Simple cross-browser bookmark sync using GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "Sync Bookmarks",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "Remove All Bookmarks",
         "description": ""
     },
     "settings": {
@@ -43,14 +39,26 @@
         "message": "Github Token",
         "description": ""
     },
-    "gistID": {
-        "message": "Gist ID",
-        "description": ""
-    },
-    "gistFileName": {
-        "message": "Gist File Name",
-        "description": ""
-    },
+  "gistID": {
+    "message": "Gist ID",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "Test Connection",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "Create Private Gist",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "Gist ID is already set",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "Gist must be private",
+    "description": ""
+  },
     "enableNotifications": {
         "message": "Enable Notifications",
         "description": ""
@@ -82,9 +90,5 @@
     "syncBookmarksDesc": {
         "message": "Merge all the bookmarks on the server into the local browser, and then upload them to the server",
         "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "Remove All Bookmarks, Please backup first",
-        "description": ""
-    }
+  }
 }

@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub - 북마크 동기화",
+        "message": "BookmarkHub-- - 북마크 동기화",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub, 다양한 브라우저 간 북마크 동기화",
+        "message": "BookmarkHub--, GitHub Gist를 사용한 간단한 북마크 동기화",
         "description": ""
     },
     "uploadBookmarks": {
@@ -17,10 +17,6 @@
     },
     "syncBookmarks": {
         "message": "북마크 동기화",
-        "description": ""
-    },
-    "removeAllBookmarks": {
-        "message": "모든 북마크 삭제",
         "description": ""
     },
     "settings": {
@@ -47,8 +43,20 @@
         "message": "Gist ID",
         "description": ""
     },
-    "gistFileName": {
-        "message": "Gist 파일명",
+    "testConnection": {
+        "message": "연결 테스트",
+        "description": ""
+    },
+    "createPrivateGist": {
+        "message": "비공개 Gist 만들기",
+        "description": ""
+    },
+    "gistIdAlreadySet": {
+        "message": "Gist ID가 이미 설정되어 있습니다",
+        "description": ""
+    },
+    "gistMustBePrivate": {
+        "message": "Gist는 비공개여야 합니다",
         "description": ""
     },
     "enableNotifications": {
@@ -81,10 +89,6 @@
     },
     "syncBookmarksDesc": {
         "message": "서버의 모든 북마크를 로컬 브라우저에 병합한 후, 서버로 업로드",
-        "description": ""
-    },
-    "removeAllBookmarksDesc": {
-        "message": "모든 북마크를 삭제합니다. 사전에 백업하세요.",
         "description": ""
     }
 }
