@@ -5,57 +5,82 @@ import iconLogo from '../assets/icon.png'
 import { OperType, BookmarkInfo, SyncDataInfo, RootBookmarksType } from '../utils/models'
 import type { Browser } from 'wxt/browser'
 
-type ActionName = 'upload' | 'download' | 'setting';
+type ActionName = 'upload' | 'download' | 'setting' | 'restore';
 type RootFolderIds = Partial<Record<RootBookmarksType, string>>;
+type ActionMessage = { name: ActionName; force?: boolean; revisionId?: string };
+type DownloadResult = {
+  status: 'success' | 'conflict' | 'noop' | 'error';
+  localCount?: number;
+  remoteCount?: number;
+  message?: string;
+};
+type SyncMarker = {
+  localDirty?: boolean;
+};
+type ComparableBookmark = {
+  title: string;
+  url?: string;
+  children?: ComparableBookmark[];
+};
 
-function isActionMessage(message: unknown): message is { name: ActionName } {
+function isActionMessage(message: unknown): message is ActionMessage {
   return typeof message === 'object'
     && message != null
     && 'name' in message
-    && ['upload', 'download', 'setting'].includes(String(message.name));
+    && ['upload', 'download', 'setting', 'restore'].includes(String(message.name));
 }
 
 export default defineBackground(() => {
   let curOperType = OperType.NONE;
   let rootFolderIds: RootFolderIds = {};
 
-  browser.runtime.onMessage.addListener((
+  browser.runtime.onMessage.addListener(async (
     msg: unknown,
     _sender: Browser.runtime.MessageSender,
-    sendResponse: (response: unknown) => void,
   ) => {
     if (!isActionMessage(msg)) {
-      return true;
+      return undefined;
     }
     if (msg.name === 'upload') {
       curOperType = OperType.SYNC
-      uploadBookmarks().then(() => {
+      try {
+        await uploadBookmarks();
+        return true;
+      } finally {
         curOperType = OperType.NONE
         browser.action.setBadgeText({ text: "" });
         refreshLocalCount();
-        sendResponse(true);
-      });
+      }
     }
     if (msg.name === 'download') {
       curOperType = OperType.SYNC
-      downloadBookmarks().then(() => {
+      try {
+        return await downloadBookmarks(msg.force === true);
+      } finally {
         curOperType = OperType.NONE
         browser.action.setBadgeText({ text: "" });
         refreshLocalCount();
-        sendResponse(true);
-      });
-
+      }
+    }
+    if (msg.name === 'restore') {
+      curOperType = OperType.SYNC
+      try {
+        return await restoreFromRevision(msg.revisionId);
+      } finally {
+        curOperType = OperType.NONE
+        browser.action.setBadgeText({ text: "" });
+        refreshLocalCount();
+      }
     }
     if (msg.name === 'setting') {
-      browser.runtime.openOptionsPage().then(() => {
-        sendResponse(true);
-      });
+      await browser.runtime.openOptionsPage();
+      return true;
     }
-    return true;
   });
   browser.bookmarks.onCreated.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onCreated", id, info)
+      markLocalDirty();
       browser.action.setBadgeText({ text: "!" });
       browser.action.setBadgeBackgroundColor({ color: "#F00" });
       refreshLocalCount();
@@ -64,6 +89,7 @@ export default defineBackground(() => {
   browser.bookmarks.onChanged.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onChanged", id, info)
+      markLocalDirty();
       browser.action.setBadgeText({ text: "!" });
       browser.action.setBadgeBackgroundColor({ color: "#F00" });
     }
@@ -71,6 +97,7 @@ export default defineBackground(() => {
   browser.bookmarks.onMoved.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onMoved", id, info)
+      markLocalDirty();
       browser.action.setBadgeText({ text: "!" });
       browser.action.setBadgeBackgroundColor({ color: "#F00" });
     }
@@ -78,6 +105,7 @@ export default defineBackground(() => {
   browser.bookmarks.onRemoved.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onRemoved", id, info)
+      markLocalDirty();
       browser.action.setBadgeText({ text: "!" });
       browser.action.setBadgeBackgroundColor({ color: "#F00" });
       refreshLocalCount();
@@ -98,7 +126,7 @@ export default defineBackground(() => {
       syncdata.version = browser.runtime.getManifest().version;
       syncdata.createDate = Date.now();
       syncdata.bookmarks = formatBookmarks(bookmarks);
-      await BookmarkService.update({
+      const response = await BookmarkService.update({
         files: {
           [GIST_FILE_NAME]: {
             content: JSON.stringify(syncdata)
@@ -108,6 +136,7 @@ export default defineBackground(() => {
       });
       const count = getBookmarkCount(syncdata.bookmarks);
       await browser.storage.local.set({ remoteCount: count });
+      await markSyncMarker();
       if (setting.enableNotify) {
         await browser.notifications.create({
           type: "basic",
@@ -128,51 +157,12 @@ export default defineBackground(() => {
       });
     }
   }
-  async function downloadBookmarks() {
+  async function downloadBookmarks(force = false): Promise<DownloadResult> {
     try {
-      let gist = await BookmarkService.get();
       let setting = await Setting.build()
-      if (gist) {
-        let syncdata: SyncDataInfo = JSON.parse(gist);
-        if (syncdata.bookmarks == undefined || syncdata.bookmarks.length == 0) {
-          if (setting.enableNotify) {
-            await browser.notifications.create({
-              type: "basic",
-              iconUrl: iconLogo,
-              title: browser.i18n.getMessage('downloadBookmarks'),
-              message: `${browser.i18n.getMessage('error')}：Gist File ${GIST_FILE_NAME} is NULL`
-            });
-          }
-          return;
-        }
-        const cleared = await clearBookmarkTree();
-        if (!cleared) {
-          throw new Error('Failed to clear local bookmarks');
-        }
-        const createErrors: string[] = [];
-        await createBookmarkTree(syncdata.bookmarks, createErrors);
-        if (createErrors.length > 0) {
-          throw new Error(`Failed to create ${createErrors.length} bookmark item(s)`);
-        }
-        const count = getBookmarkCount(syncdata.bookmarks);
-        await browser.storage.local.set({ remoteCount: count });
-        if (setting.enableNotify) {
-          await browser.notifications.create({
-            type: "basic",
-            iconUrl: iconLogo,
-            title: browser.i18n.getMessage('downloadBookmarks'),
-            message: browser.i18n.getMessage('success')
-          });
-        }
-      }
-      else {
-        await browser.notifications.create({
-          type: "basic",
-          iconUrl: iconLogo,
-          title: browser.i18n.getMessage('downloadBookmarks'),
-          message: `${browser.i18n.getMessage('error')}：Gist File ${GIST_FILE_NAME} Not Found`
-        });
-      }
+      const currentGist = await BookmarkService.getCurrentGist();
+      const syncdata = getSyncDataFromGist(currentGist);
+      return await applySyncData(syncdata, force, setting);
     }
     catch (error: any) {
       console.error(error);
@@ -182,7 +172,93 @@ export default defineBackground(() => {
         title: browser.i18n.getMessage('downloadBookmarks'),
         message: `${browser.i18n.getMessage('error')}：${error.message}`
       });
+      return { status: 'error', message: error.message };
     }
+  }
+
+  async function restoreFromRevision(revisionId?: string): Promise<DownloadResult> {
+    try {
+      const setting = await Setting.build();
+      if (!revisionId) {
+        throw new Error('Revision ID Not Found');
+      }
+      const revision = await BookmarkService.getRevision(revisionId);
+      const syncdata = getSyncDataFromGist(revision);
+      return await applySyncData(syncdata, true, setting);
+    } catch (error: any) {
+      console.error(error);
+      return { status: 'error', message: error.message };
+    }
+  }
+
+  function getSyncDataFromGist(gist: any): SyncDataInfo {
+    const file = gist?.files?.[GIST_FILE_NAME]
+      ?? LEGACY_GIST_FILE_NAMES.map((name: string) => gist?.files?.[name]).find(Boolean);
+    if (!file) {
+      throw new Error(`Gist File ${GIST_FILE_NAME} Not Found`);
+    }
+    const content = file.content ?? '';
+    if (!content) {
+      throw new Error(`Gist File ${GIST_FILE_NAME} is NULL`);
+    }
+    return JSON.parse(content) as SyncDataInfo;
+  }
+
+  async function applySyncData(syncdata: SyncDataInfo, force: boolean, setting: any): Promise<DownloadResult> {
+    if (syncdata.bookmarks == undefined || syncdata.bookmarks.length == 0) {
+      if (setting.enableNotify) {
+        await browser.notifications.create({
+          type: "basic",
+          iconUrl: iconLogo,
+          title: browser.i18n.getMessage('downloadBookmarks'),
+          message: `${browser.i18n.getMessage('error')}：Gist File ${GIST_FILE_NAME} is NULL`
+        });
+      }
+      return { status: 'error', message: `Gist File ${GIST_FILE_NAME} is NULL` };
+    }
+    const localBookmarkTree = await getBookmarks();
+    const localCount = getBookmarkCount(localBookmarkTree);
+    const remoteCount = getBookmarkCount(syncdata.bookmarks);
+    await browser.storage.local.set({ localCount, remoteCount });
+    const localBookmarks = normalizeSavedBookmarksForCompare(formatBookmarks(localBookmarkTree));
+    if (!force && hasComparableBookmarkData(localBookmarks)) {
+      return { status: 'conflict', localCount, remoteCount };
+    }
+    const cleared = await clearBookmarkTree();
+    if (!cleared) {
+      throw new Error('Failed to clear local bookmarks');
+    }
+    const createErrors: string[] = [];
+    await createBookmarkTree(syncdata.bookmarks, createErrors);
+    if (createErrors.length > 0) {
+      throw new Error(`Failed to create ${createErrors.length} bookmark item(s)`);
+    }
+    await browser.storage.local.set({ localCount: remoteCount, remoteCount });
+    await markSyncMarker();
+    if (setting.enableNotify) {
+      await browser.notifications.create({
+        type: "basic",
+        iconUrl: iconLogo,
+        title: browser.i18n.getMessage('downloadBookmarks'),
+        message: browser.i18n.getMessage('success')
+      });
+    }
+    return { status: 'success', localCount: remoteCount, remoteCount };
+  }
+
+  async function getSyncMarker(): Promise<SyncMarker> {
+    const stored = await browser.storage.local.get(['localDirty']);
+    return {
+      localDirty: stored.localDirty === true,
+    };
+  }
+
+  async function markSyncMarker() {
+    await browser.storage.local.set({ localDirty: false });
+  }
+
+  async function markLocalDirty() {
+    await browser.storage.local.set({ localDirty: true });
   }
 
   async function getBookmarks() {
@@ -305,6 +381,105 @@ export default defineBackground(() => {
       });
     }
     return count;
+  }
+
+  function areBookmarkTreesEqual(
+    localBookmarks: ComparableBookmark[],
+    remoteBookmarks: ComparableBookmark[],
+  ) {
+    return JSON.stringify(localBookmarks) === JSON.stringify(remoteBookmarks);
+  }
+
+  function normalizeSavedBookmarksForCompare(bookmarkList: BookmarkInfo[] | undefined): ComparableBookmark[] {
+    const normalizedBookmarks: ComparableBookmark[] = [];
+    const rootIndex = new Map<string, ComparableBookmark>();
+    (bookmarkList ?? []).forEach(bookmark => {
+        const rootType = getCompareRootType(bookmark);
+        if (rootType && isEmptyRootBookmark(bookmark)) {
+          return;
+        }
+        const comparable = normalizeBookmarkForCompare(bookmark);
+        if (!rootType) {
+          normalizedBookmarks.push(comparable);
+          return;
+        }
+        comparable.title = getComparableRootTitle(rootType);
+        const existingRoot = rootIndex.get(comparable.title);
+        if (existingRoot) {
+          existingRoot.children = [
+            ...(existingRoot.children ?? []),
+            ...(comparable.children ?? []),
+          ];
+          return;
+        }
+        rootIndex.set(comparable.title, comparable);
+        normalizedBookmarks.push(comparable);
+      });
+    return normalizedBookmarks.sort((left, right) =>
+      getRootCompareOrder(left.title) - getRootCompareOrder(right.title)
+    );
+  }
+
+  function normalizeBookmarkForCompare(bookmark: BookmarkInfo): ComparableBookmark {
+    const comparable: ComparableBookmark = {
+      title: bookmark.title ?? '',
+    };
+    if (bookmark.url) {
+      comparable.url = bookmark.url;
+    }
+    const children = bookmark.children?.map(normalizeBookmarkForCompare) ?? [];
+    if (children.length > 0) {
+      comparable.children = children;
+    }
+    return comparable;
+  }
+
+  function isEmptyRootBookmark(bookmark: BookmarkInfo) {
+    return getCompareRootType(bookmark) != null
+      && !bookmark.url
+      && (!bookmark.children || bookmark.children.length === 0);
+  }
+
+  function getCompareRootType(bookmark: BookmarkInfo): RootBookmarksType | undefined {
+    return getRootBookmarkType(bookmark)
+      ?? (isRootBookmarkType(bookmark.title) ? bookmark.title : undefined);
+  }
+
+  function getComparableRootTitle(rootType: RootBookmarksType) {
+    const destinationRootId = getDestinationRootId(rootType);
+    switch (destinationRootId) {
+      case rootFolderIds[RootBookmarksType.MenuFolder]:
+        return RootBookmarksType.MenuFolder;
+      case rootFolderIds[RootBookmarksType.MobileFolder]:
+        return RootBookmarksType.MobileFolder;
+      case rootFolderIds[RootBookmarksType.ToolbarFolder]:
+        return RootBookmarksType.ToolbarFolder;
+      case rootFolderIds[RootBookmarksType.UnfiledFolder]:
+        return RootBookmarksType.UnfiledFolder;
+      default:
+        return rootType;
+    }
+  }
+
+  function getRootCompareOrder(title: string) {
+    const rootOrder = [
+      RootBookmarksType.MenuFolder,
+      RootBookmarksType.ToolbarFolder,
+      RootBookmarksType.UnfiledFolder,
+      RootBookmarksType.MobileFolder,
+    ];
+    const index = rootOrder.indexOf(title as RootBookmarksType);
+    return index === -1 ? Number.MAX_SAFE_INTEGER : index;
+  }
+
+  function hasComparableBookmarkData(bookmarkList: ComparableBookmark[]) {
+    return bookmarkList.some(hasComparableNodeData);
+  }
+
+  function hasComparableNodeData(bookmark: ComparableBookmark): boolean {
+    return Boolean(bookmark.url)
+      || Boolean(bookmark.children && bookmark.children.length > 0)
+      || !isRootBookmarkType(bookmark.title);
   }
 
   async function refreshLocalCount() {

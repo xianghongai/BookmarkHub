@@ -35,6 +35,26 @@
         "message": "Nombre de signets distants",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "Les signets diffèrent",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "Les signets locaux et distants sont différents. Continuer remplacera les signets locaux.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "Remplacer local",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Annuler",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "Les signets sont déjà synchronisés",
+        "description": ""
+    },
     "githubToken": {
         "message": "Jetons GitHub",
         "description": ""

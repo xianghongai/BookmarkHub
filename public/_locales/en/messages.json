@@ -35,6 +35,26 @@
         "message": "Remote Bookmark Count",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "Overwrite local bookmarks",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "Local bookmarks already exist. Continuing will overwrite them.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "Replace Local",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Cancel",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "Bookmarks are already synced",
+        "description": ""
+    },
     "githubToken": {
         "message": "Github Token",
         "description": ""

@@ -35,6 +35,26 @@
         "message": "Quantidade de favoritos remotos",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "Os favoritos são diferentes",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "Os favoritos locais e remotos são diferentes. Continuar substituirá os favoritos locais.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "Substituir local",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Cancelar",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "Os favoritos já estão sincronizados",
+        "description": ""
+    },
     "githubToken": {
         "message": "Token do GitHub",
         "description": ""

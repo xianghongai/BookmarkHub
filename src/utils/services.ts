@@ -6,12 +6,26 @@ type CreatedGist = {
     id?: string;
     public?: boolean;
     description?: string | null;
+    updated_at?: string;
     files?: Record<string, {
         content?: string;
         truncated?: boolean;
         raw_url?: string;
     }>;
+    history?: GistHistoryItem[];
 }
+
+export type GistHistoryItem = {
+        committed_at?: string;
+        version?: string;
+        url?: string;
+}
+
+export type GistRevisionRecord = {
+    revisionId: string;
+    committedAt: string;
+    rawUrl?: string;
+};
 
 class BookmarkService {
     async createPrivateGist() {
@@ -46,11 +60,12 @@ class BookmarkService {
 
     async get() {
         const resp = await this.getPrivateGist();
-        if (resp?.files) {
+        const files = resp.files;
+        if (files) {
             const fileName = [GIST_FILE_NAME, ...LEGACY_GIST_FILE_NAMES]
-                .find(name => resp.files[name] != null);
+                .find(name => files[name] != null);
             if (fileName) {
-                const gistFile = resp.files[fileName]
+                const gistFile = files[fileName]
                 if (gistFile.truncated) {
                     return http.get(gistFile.raw_url!, { prefix: '' }).text();
                 } else {
@@ -60,8 +75,27 @@ class BookmarkService {
         }
         return null;
     }
+
+    async getCurrentGist() {
+        return this.getPrivateGist();
+    }
     async getAllGist() {
         return http.get('gists').json();
+    }
+
+    async getRevision(version: string) {
+        const setting = await Setting.build();
+        return http.get(`gists/${setting.gistID}/${version}`).json<CreatedGist>();
+    }
+
+    normalizeHistory(history: GistHistoryItem[] = []): GistRevisionRecord[] {
+        return history
+            .map(item => ({
+                revisionId: String(item.version ?? '').trim(),
+                committedAt: String(item.committed_at ?? '').trim(),
+                rawUrl: item.url,
+            }))
+            .filter(item => item.revisionId.length > 0);
     }
 
     async update(data: any) {

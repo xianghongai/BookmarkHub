@@ -35,6 +35,26 @@
         "message": "Количество закладок на сервере",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "Закладки отличаются",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "Локальные и удаленные закладки отличаются. Продолжение заменит локальные закладки.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "Заменить локальные",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Отмена",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "Закладки уже синхронизированы",
+        "description": ""
+    },
     "githubToken": {
         "message": "Github Token",
         "description": ""

@@ -35,6 +35,26 @@
         "message": "远程书签数量",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "将覆盖本地书签",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "本地已有书签。继续下载会覆盖本地书签。",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "替换本地",
+        "description": ""
+    },
+    "cancel": {
+        "message": "取消",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "书签已经同步",
+        "description": ""
+    },
     "githubToken": {
         "message": "Github Token",
         "description": ""

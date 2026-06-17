@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client';
-import { Container, Form, Button, Col, Row, InputGroup } from 'react-bootstrap';
+import { Container, Form, Button, Col, Row, InputGroup, ListGroup, Stack } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './options.css'
 import optionsStorage from '../../utils/optionsStorage'
-import BookmarkService from '../../utils/services'
+import BookmarkService, { GistHistoryItem, GistRevisionRecord } from '../../utils/services'
 
 type OptionsFormValues = {
     githubToken: string;
@@ -14,6 +14,7 @@ type OptionsFormValues = {
 }
 
 type ConnectionStatus = 'idle' | 'creating' | 'testing' | 'success' | 'failed';
+type HistoryStatus = 'idle' | 'loading' | 'loaded' | 'failed';
 
 const getFormValues = () => {
     const form = document.getElementById('formOptions') as HTMLFormElement;
@@ -30,11 +31,18 @@ const Popup: React.FC = () => {
     const [connectionStatus, setConnectionStatus] = useState<ConnectionStatus>('idle');
     const [connectionMessage, setConnectionMessage] = useState('');
     const [hasGistID, setHasGistID] = useState(false);
+    const [historyStatus, setHistoryStatus] = useState<HistoryStatus>('idle');
+    const [historyMessage, setHistoryMessage] = useState('');
+    const [historyItems, setHistoryItems] = useState<GistRevisionRecord[]>([]);
+    const [restoreId, setRestoreId] = useState('');
 
     useEffect(() => {
         optionsStorage.syncForm('#formOptions').then(() => {
             const { gistID } = getFormValues();
             setHasGistID(Boolean(gistID));
+            if (gistID) {
+                loadHistory();
+            }
         });
 
         return () => optionsStorage.stopSyncForm();
@@ -106,6 +114,50 @@ const Popup: React.FC = () => {
             const message = error instanceof Error ? error.message : String(error);
             setConnectionStatus('failed');
             setConnectionMessage(`${browser.i18n.getMessage('testConnection')}: ${browser.i18n.getMessage('failed')} - ${message}`);
+        }
+    }
+
+    const loadHistory = async () => {
+        const { githubToken, gistID } = getFormValues();
+        if (!githubToken || !gistID) {
+            setHistoryStatus('failed');
+            setHistoryMessage('History requires GitHub Token and Gist ID');
+            return;
+        }
+        setHistoryStatus('loading');
+        setHistoryMessage('');
+        try {
+            await optionsStorage.set({ githubToken, gistID });
+            const gist = await BookmarkService.getCurrentGist();
+            setHistoryItems(BookmarkService.normalizeHistory(gist.history ?? []));
+            setHistoryStatus('loaded');
+        } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            setHistoryStatus('failed');
+            setHistoryMessage(`History load failed - ${message}`);
+        }
+    }
+
+    const restoreHistoryItem = async (item: GistRevisionRecord) => {
+        if (!item.revisionId) {
+            return;
+        }
+        setRestoreId(item.revisionId);
+        setHistoryStatus('loading');
+        setHistoryMessage('Restoring...');
+        try {
+            const response = await browser.runtime.sendMessage({ name: 'restore', revisionId: item.revisionId });
+            if (response?.status === 'success') {
+                setHistoryMessage('Restored to local bookmarks');
+            } else if (response?.status === 'error') {
+                setHistoryMessage(`Restore failed - ${response.message ?? ''}`);
+            }
+        } catch (error) {
+            const message = error instanceof Error ? error.message : String(error);
+            setHistoryMessage(`Restore failed - ${message}`);
+        } finally {
+            setRestoreId('');
+            setHistoryStatus('loaded');
         }
     }
 
@@ -193,10 +245,49 @@ const Popup: React.FC = () => {
                         />
                     </Col>
                 </Form.Group>
-                <Form.Group as={Row}>
-                    <Form.Label column="sm" sm={3} lg={2} xs={3}></Form.Label>
+                <Form.Group as={Row} className="mt-3">
+                    <Form.Label column="sm" sm={3} lg={2} xs={3}>History</Form.Label>
                     <Col sm={9} lg={10} xs={9}>
-                        <a href="https://github.com/dudor/BookmarkHub" target="_blank">{browser.i18n.getMessage('help')}</a>
+                        <Stack direction="horizontal" gap={2} className="mb-2">
+                            <Button
+                                type="button"
+                                variant="outline-secondary"
+                                size="sm"
+                                disabled={historyStatus === 'loading' || !hasGistID}
+                                onClick={loadHistory}
+                            >
+                                Refresh
+                            </Button>
+                        </Stack>
+                        {historyMessage && (
+                            <Form.Text aria-live="polite" className={historyStatus === 'failed' ? 'text-danger' : 'text-muted'}>
+                                {historyMessage}
+                            </Form.Text>
+                        )}
+                        <ListGroup variant="flush" className="history-list">
+                            {historyItems.map(item => {
+                                const key = item.revisionId || item.committedAt || Math.random().toString();
+                                return (
+                                    <ListGroup.Item key={key} className="px-0 py-2">
+                                        <Stack direction="horizontal" gap={2} className="justify-content-between align-items-start">
+                                            <div className="history-meta">
+                                                <div className="history-time">{item.committedAt || 'Unknown time'}</div>
+                                                <div className="history-version">{item.revisionId.slice(0, 12) || 'Unknown revision'}</div>
+                                            </div>
+                                            <Button
+                                                type="button"
+                                                variant="outline-primary"
+                                                size="sm"
+                                                disabled={historyStatus === 'loading' || restoreId === item.revisionId}
+                                                onClick={() => restoreHistoryItem(item)}
+                                            >
+                                                Restore
+                                            </Button>
+                                        </Stack>
+                                    </ListGroup.Item>
+                                )
+                            })}
+                        </ListGroup>
                     </Col>
                 </Form.Group>
             </Form>

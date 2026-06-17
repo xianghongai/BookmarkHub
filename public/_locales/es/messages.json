@@ -35,6 +35,26 @@
         "message": "Cantidad de marcadores remotos",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "Los marcadores son diferentes",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "Los marcadores locales y remotos son diferentes. Continuar reemplazará los marcadores locales.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "Reemplazar local",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Cancelar",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "Los marcadores ya están sincronizados",
+        "description": ""
+    },
     "githubToken": {
         "message": "Token de GitHub",
         "description": ""

@@ -35,6 +35,26 @@
         "message": "Anzahl entfernter Bookmarks",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "Bookmarks unterscheiden sich",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "Lokale und entfernte Bookmarks unterscheiden sich. Fortfahren ersetzt lokale Bookmarks.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "Lokal ersetzen",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Abbrechen",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "Bookmarks sind bereits synchronisiert",
+        "description": ""
+    },
     "githubToken": {
         "message": "GitHub-Token",
         "description": ""

@@ -35,6 +35,26 @@
         "message": "원격 북마크 수",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "북마크가 다릅니다",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "로컬 북마크와 원격 북마크가 다릅니다. 계속하면 로컬 북마크를 교체합니다.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "로컬 교체",
+        "description": ""
+    },
+    "cancel": {
+        "message": "취소",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "북마크가 이미 동기화되어 있습니다",
+        "description": ""
+    },
     "githubToken": {
         "message": "GitHub 토큰",
         "description": ""

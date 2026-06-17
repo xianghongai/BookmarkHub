@@ -35,6 +35,26 @@
         "message": "عدد العلامات المرجعية البعيدة",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "العلامات المرجعية مختلفة",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "تختلف العلامات المرجعية المحلية والبعيدة. المتابعة ستستبدل العلامات المحلية.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "استبدال المحلي",
+        "description": ""
+    },
+    "cancel": {
+        "message": "إلغاء",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "العلامات المرجعية متزامنة بالفعل",
+        "description": ""
+    },
     "githubToken": {
         "message": "رمز GitHub",
         "description": ""

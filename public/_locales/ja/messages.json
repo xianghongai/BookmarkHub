@@ -35,6 +35,26 @@
         "message": "リモートのブックマーク数",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "ブックマークが異なります",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "ローカルとリモートのブックマークが異なります。続行するとローカルのブックマークを置き換えます。",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "ローカルを置換",
+        "description": ""
+    },
+    "cancel": {
+        "message": "キャンセル",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "ブックマークはすでに同期済みです",
+        "description": ""
+    },
     "githubToken": {
         "message": "GitHub トークン",
         "description": ""

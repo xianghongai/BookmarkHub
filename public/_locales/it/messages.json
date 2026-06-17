@@ -35,6 +35,26 @@
         "message": "Numero di segnalibri remoti",
         "description": ""
     },
+    "bookmarkConflictTitle": {
+        "message": "I segnalibri sono diversi",
+        "description": ""
+    },
+    "bookmarkConflictDesc": {
+        "message": "I segnalibri locali e remoti sono diversi. Continuando, i segnalibri locali verranno sostituiti.",
+        "description": ""
+    },
+    "replaceLocalBookmarks": {
+        "message": "Sostituisci locale",
+        "description": ""
+    },
+    "cancel": {
+        "message": "Annulla",
+        "description": ""
+    },
+    "alreadySynced": {
+        "message": "I segnalibri sono già sincronizzati",
+        "description": ""
+    },
     "githubToken": {
         "message": "Token GitHub",
         "description": ""
