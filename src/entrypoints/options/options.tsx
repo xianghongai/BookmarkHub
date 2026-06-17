@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import ReactDOM from 'react-dom/client';
-import { Container, Form, Button, Col, Row, InputGroup, ListGroup, Stack } from 'react-bootstrap';
+import { Container, Form, Button, Col, Row, InputGroup, ListGroup, Stack, Badge } from 'react-bootstrap';
 import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './options.css'
 import optionsStorage from '../../utils/optionsStorage'
-import BookmarkService, { GistHistoryItem, GistRevisionRecord } from '../../utils/services'
+import BookmarkService, { GistRevisionRecord } from '../../utils/services'
 
 type OptionsFormValues = {
     githubToken: string;
@@ -164,7 +164,7 @@ const Popup: React.FC = () => {
     return (
         <Container>
             <Form id='formOptions' name='formOptions'>
-                <Form.Group as={Row}>
+                <Form.Group as={Row} className="mt-2">
                     <Form.Label column="sm" sm={3} lg={2} xs={3}>{browser.i18n.getMessage('githubToken')}</Form.Label>
                     <Col sm={9} lg={10} xs={9}>
                         <InputGroup size="sm">
@@ -190,7 +190,7 @@ const Popup: React.FC = () => {
                     </Col>
                 </Form.Group>
 
-                <Form.Group as={Row}>
+                <Form.Group as={Row} className="mt-2">
                     <Form.Label column="sm" sm={3} lg={2} xs={3}>{browser.i18n.getMessage('gistID')}</Form.Label>
                     <Col sm={9} lg={10} xs={9}>
                         <InputGroup size="sm">
@@ -235,7 +235,7 @@ const Popup: React.FC = () => {
                         )}
                     </Col>
                 </Form.Group>
-                <Form.Group as={Row}>
+                <Form.Group as={Row} className="mt-2">
                     <Form.Label column="sm" sm={3} lg={2} xs={3}>{browser.i18n.getMessage('enableNotifications')}</Form.Label>
                     <Col sm={9} lg={10} xs={9}>
                         <Form.Check
@@ -267,13 +267,15 @@ const Popup: React.FC = () => {
                         <ListGroup variant="flush" className="history-list">
                             {historyItems.map(item => {
                                 const key = item.revisionId || item.committedAt || Math.random().toString();
+                                const committedAt = new Date(item.committedAt).toLocaleString();
+
                                 return (
                                     <ListGroup.Item key={key} className="px-0 py-2">
                                         <Stack direction="horizontal" gap={2} className="justify-content-between align-items-start">
-                                            <div className="history-meta">
-                                                <div className="history-time">{item.committedAt || 'Unknown time'}</div>
-                                                <div className="history-version">{item.revisionId.slice(0, 12) || 'Unknown revision'}</div>
-                                            </div>
+                                            <Stack className="history-meta" direction="horizontal" gap={2}>
+                                                <div className="history-version"><Badge bg="primary">{item.revisionId.slice(0, 12) || 'Unknown revision'}</Badge></div>
+                                                <div className="history-time">{(committedAt) || 'Unknown time'}</div>
+                                            </Stack>
                                             <Button
                                                 type="button"
                                                 variant="outline-primary"

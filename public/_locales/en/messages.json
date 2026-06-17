@@ -1,64 +1,64 @@
 {
-    "extensionName": {
-        "message": "BookmarkHub--",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "Simple cross-browser bookmark sync using GitHub Gist",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "Upload Bookmarks",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "DownLoad Bookmarks",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "Sync Bookmarks",
-        "description": ""
-    },
-    "settings": {
-        "message": "Settings",
-        "description": ""
-    },
-    "help": {
-        "message": "Help",
-        "description": ""
-    },
-    "localCount": {
-        "message": "Local Bookmark Count",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "Remote Bookmark Count",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "Overwrite local bookmarks",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "Local bookmarks already exist. Continuing will overwrite them.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "Replace Local",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancel",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "Bookmarks are already synced",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "Github Token",
-        "description": ""
-    },
+  "extensionName": {
+    "message": "BookmarkHub--",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "Simple cross-browser bookmark sync using GitHub Gist",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "Upload Bookmarks",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "DownLoad Bookmarks",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "Sync Bookmarks",
+    "description": ""
+  },
+  "settings": {
+    "message": "Settings",
+    "description": ""
+  },
+  "help": {
+    "message": "Help",
+    "description": ""
+  },
+  "localCount": {
+    "message": "Local Bookmark Count",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "Remote Bookmark Count",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "Overwrite local bookmarks",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "Local bookmarks already exist. Continuing will overwrite them.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "Replace Local",
+    "description": ""
+  },
+  "cancel": {
+    "message": "Cancel",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "Bookmarks are already synced",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "Github Token",
+    "description": ""
+  },
   "gistID": {
     "message": "Gist ID",
     "description": ""
@@ -79,36 +79,36 @@
     "message": "Gist must be private",
     "description": ""
   },
-    "enableNotifications": {
-        "message": "Enable Notifications",
-        "description": ""
-    },
-    "success": {
-        "message": "Success",
-        "description": ""
-    },
-    "failed": {
-        "message": "Failed",
-        "description": ""
-    },
-    "error": {
-        "message": "Error",
-        "description": ""
-    },
-    "author": {
-        "message": "Author",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "Upload all the bookmarks of the local browser to the server",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "First clear the bookmarks in the local browser, and then download all the bookmarks on the server to the local browser",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "Merge all the bookmarks on the server into the local browser, and then upload them to the server",
-        "description": ""
+  "enableNotifications": {
+    "message": "Notifications",
+    "description": ""
+  },
+  "success": {
+    "message": "Success",
+    "description": ""
+  },
+  "failed": {
+    "message": "Failed",
+    "description": ""
+  },
+  "error": {
+    "message": "Error",
+    "description": ""
+  },
+  "author": {
+    "message": "Author",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "Upload all the bookmarks of the local browser to the server",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "First clear the bookmarks in the local browser, and then download all the bookmarks on the server to the local browser",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "Merge all the bookmarks on the server into the local browser, and then upload them to the server",
+    "description": ""
   }
 }

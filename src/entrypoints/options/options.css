@@ -1,24 +1,19 @@
 #root {
-    margin: 10px;
-    width: 500px;
+  margin: 10px;
+  width: 600px;
 }
 
 .history-list {
-    max-height: 280px;
-    overflow: auto;
-    border: 1px solid #dee2e6;
-    border-radius: 4px;
-    padding: 0 0.5rem;
+  max-height: 280px;
+  overflow: auto;
+  border: 1px solid #dee2e6;
+  border-radius: 4px;
+  padding: 0 0.5rem;
 }
 
-.history-meta {
-    display: flex;
-    flex-direction: column;
-    min-width: 0;
-}
 
 .history-time,
 .history-version {
-    font-size: 12px;
-    word-break: break-all;
+  font-size: 12px;
+  word-break: break-all;
 }
