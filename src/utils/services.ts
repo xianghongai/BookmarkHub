@@ -2,7 +2,7 @@ import { GIST_FILE_NAME, LEGACY_GIST_FILE_NAMES } from './constants'
 import { Setting } from './setting'
 import { http } from './http'
 
-type CreatedGist = {
+export type CreatedGist = {
     id?: string;
     public?: boolean;
     description?: string | null;
@@ -13,6 +13,11 @@ type CreatedGist = {
         raw_url?: string;
     }>;
     history?: GistHistoryItem[];
+}
+
+export type GistUpdate = {
+    description?: string;
+    files: Record<string, { content: string }>;
 }
 
 export type GistHistoryItem = {
@@ -98,7 +103,7 @@ class BookmarkService {
             .filter(item => item.revisionId.length > 0);
     }
 
-    async update(data: any) {
+    async update(data: GistUpdate) {
         const setting = await Setting.build();
         await this.getPrivateGist();
         return http.patch(`gists/${setting.gistID}`, { json: data }).json();

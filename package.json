@@ -1,5 +1,7 @@
 {
   "name": "browser-bookmark-sync",
+  "version": "1.0.3",
+  "private": true,
   "description": "Simple cross-browser bookmark sync using GitHub Gist",
   "keywords": [
     "bookmarks",
@@ -7,19 +9,17 @@
     "gist",
     "sync"
   ],
-  "private": true,
-  "version": "1.0.3",
-  "type": "module",
-  "author": "Bookmark Sync (Gist) contributors",
-  "license": "",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/xianghongai/browser-bookmark-sync"
-  },
   "homepage": "https://github.com/xianghongai/browser-bookmark-sync#readme",
   "bugs": {
     "url": "https://github.com/xianghongai/browser-bookmark-sync/issues"
   },
+  "license": "",
+  "author": "Bookmark Sync (Gist) contributors",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xianghongai/browser-bookmark-sync"
+  },
+  "type": "module",
   "scripts": {
     "dev": "wxt -b chrome --mv3",
     "dev:chrome": "wxt -b chrome --mv3",
@@ -36,7 +36,10 @@
     "zip:edge": "wxt zip -b edge --mv3",
     "zip:all": "pnpm run zip:chrome && pnpm run zip:firefox && pnpm run zip:edge",
     "compile": "tsc --noEmit",
-    "postinstall": "wxt prepare"
+    "postinstall": "wxt prepare",
+    "lint": "oxlint",
+    "format": "oxfmt",
+    "format:check": "oxfmt --check"
   },
   "dependencies": {
     "bootstrap": "^5.3.8",
@@ -54,6 +57,8 @@
     "@types/react-dom": "^19.2.3",
     "@wxt-dev/auto-icons": "^1.1.1",
     "@wxt-dev/module-react": "^1.2.2",
+    "oxfmt": "^0.72.0",
+    "oxlint": "^1.87.0",
     "typescript": "^6.0.3",
     "wxt": "^0.20.26"
   }

@@ -1,4 +1,4 @@
-import BookmarkService from '../utils/services'
+import BookmarkService, { type CreatedGist } from '../utils/services'
 import { Setting } from '../utils/setting'
 import { GIST_FILE_NAME } from '../utils/constants'
 import iconLogo from '../assets/icon.png'
@@ -28,6 +28,10 @@ function isActionMessage(message: unknown): message is ActionMessage {
     && message != null
     && 'name' in message
     && ['upload', 'download', 'setting', 'restore'].includes(String(message.name));
+}
+
+function getErrorMessage(error: unknown) {
+  return error instanceof Error ? error.message : String(error);
 }
 
 export default defineBackground(() => {
@@ -147,13 +151,13 @@ export default defineBackground(() => {
       }
 
     }
-    catch (error: any) {
+    catch (error) {
       console.error(error);
       await browser.notifications.create({
         type: "basic",
         iconUrl: iconLogo,
         title: browser.i18n.getMessage('uploadBookmarks'),
-        message: `${browser.i18n.getMessage('error')}：${error.message}`
+        message: `${browser.i18n.getMessage('error')}：${getErrorMessage(error)}`
       });
     }
   }
@@ -164,15 +168,15 @@ export default defineBackground(() => {
       const syncdata = getSyncDataFromGist(currentGist);
       return await applySyncData(syncdata, force, setting);
     }
-    catch (error: any) {
+    catch (error) {
       console.error(error);
       await browser.notifications.create({
         type: "basic",
         iconUrl: iconLogo,
         title: browser.i18n.getMessage('downloadBookmarks'),
-        message: `${browser.i18n.getMessage('error')}：${error.message}`
+        message: `${browser.i18n.getMessage('error')}：${getErrorMessage(error)}`
       });
-      return { status: 'error', message: error.message };
+      return { status: 'error', message: getErrorMessage(error) };
     }
   }
 
@@ -185,13 +189,13 @@ export default defineBackground(() => {
       const revision = await BookmarkService.getRevision(revisionId);
       const syncdata = getSyncDataFromGist(revision);
       return await applySyncData(syncdata, true, setting);
-    } catch (error: any) {
+    } catch (error) {
       console.error(error);
-      return { status: 'error', message: error.message };
+      return { status: 'error', message: getErrorMessage(error) };
     }
   }
 
-  function getSyncDataFromGist(gist: any): SyncDataInfo {
+  function getSyncDataFromGist(gist: CreatedGist): SyncDataInfo {
     const file = gist?.files?.[GIST_FILE_NAME]
       ?? LEGACY_GIST_FILE_NAMES.map((name: string) => gist?.files?.[name]).find(Boolean);
     if (!file) {
@@ -204,7 +208,7 @@ export default defineBackground(() => {
     return JSON.parse(content) as SyncDataInfo;
   }
 
-  async function applySyncData(syncdata: SyncDataInfo, force: boolean, setting: any): Promise<DownloadResult> {
+  async function applySyncData(syncdata: SyncDataInfo, force: boolean, setting: Setting): Promise<DownloadResult> {
     if (syncdata.bookmarks == undefined || syncdata.bookmarks.length == 0) {
       if (setting.enableNotify) {
         await browser.notifications.create({
@@ -308,7 +312,7 @@ export default defineBackground(() => {
       }
       return true;
     }
-    catch (error: any) {
+    catch (error) {
       console.error(error);
       return false;
     }
