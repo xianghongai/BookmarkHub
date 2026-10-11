@@ -1,9 +1,9 @@
-import BookmarkService, { type CreatedGist } from '../utils/services'
-import { Setting } from '../utils/setting'
-import { GIST_FILE_NAME } from '../utils/constants'
-import iconLogo from '../assets/icon.png'
-import { OperType, BookmarkInfo, SyncDataInfo, RootBookmarksType } from '../utils/models'
-import type { Browser } from 'wxt/browser'
+import BookmarkService, { type CreatedGist } from '../utils/services';
+import { Setting } from '../utils/setting';
+import { GIST_FILE_NAME } from '../utils/constants';
+import iconLogo from '../assets/icon.png';
+import { OperType, BookmarkInfo, SyncDataInfo, RootBookmarksType } from '../utils/models';
+import type { Browser } from 'wxt/browser';
 
 type ActionName = 'upload' | 'download' | 'setting' | 'restore';
 type RootFolderIds = Partial<Record<RootBookmarksType, string>>;
@@ -24,10 +24,12 @@ type ComparableBookmark = {
 };
 
 function isActionMessage(message: unknown): message is ActionMessage {
-  return typeof message === 'object'
-    && message != null
-    && 'name' in message
-    && ['upload', 'download', 'setting', 'restore'].includes(String(message.name));
+  return (
+    typeof message === 'object' &&
+    message != null &&
+    'name' in message &&
+    ['upload', 'download', 'setting', 'restore'].includes(String(message.name))
+  );
 }
 
 function getErrorMessage(error: unknown) {
@@ -38,41 +40,38 @@ export default defineBackground(() => {
   let curOperType = OperType.NONE;
   let rootFolderIds: RootFolderIds = {};
 
-  browser.runtime.onMessage.addListener(async (
-    msg: unknown,
-    _sender: Browser.runtime.MessageSender,
-  ) => {
+  browser.runtime.onMessage.addListener(async (msg: unknown, _sender: Browser.runtime.MessageSender) => {
     if (!isActionMessage(msg)) {
       return undefined;
     }
     if (msg.name === 'upload') {
-      curOperType = OperType.SYNC
+      curOperType = OperType.SYNC;
       try {
         await uploadBookmarks();
         return true;
       } finally {
-        curOperType = OperType.NONE
-        browser.action.setBadgeText({ text: "" });
+        curOperType = OperType.NONE;
+        browser.action.setBadgeText({ text: '' });
         refreshLocalCount();
       }
     }
     if (msg.name === 'download') {
-      curOperType = OperType.SYNC
+      curOperType = OperType.SYNC;
       try {
         return await downloadBookmarks(msg.force === true);
       } finally {
-        curOperType = OperType.NONE
-        browser.action.setBadgeText({ text: "" });
+        curOperType = OperType.NONE;
+        browser.action.setBadgeText({ text: '' });
         refreshLocalCount();
       }
     }
     if (msg.name === 'restore') {
-      curOperType = OperType.SYNC
+      curOperType = OperType.SYNC;
       try {
         return await restoreFromRevision(msg.revisionId);
       } finally {
-        curOperType = OperType.NONE
-        browser.action.setBadgeText({ text: "" });
+        curOperType = OperType.NONE;
+        browser.action.setBadgeText({ text: '' });
         refreshLocalCount();
       }
     }
@@ -85,8 +84,8 @@ export default defineBackground(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onCreated", id, info)
       markLocalDirty();
-      browser.action.setBadgeText({ text: "!" });
-      browser.action.setBadgeBackgroundColor({ color: "#F00" });
+      browser.action.setBadgeText({ text: '!' });
+      browser.action.setBadgeBackgroundColor({ color: '#F00' });
       refreshLocalCount();
     }
   });
@@ -94,36 +93,36 @@ export default defineBackground(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onChanged", id, info)
       markLocalDirty();
-      browser.action.setBadgeText({ text: "!" });
-      browser.action.setBadgeBackgroundColor({ color: "#F00" });
+      browser.action.setBadgeText({ text: '!' });
+      browser.action.setBadgeBackgroundColor({ color: '#F00' });
     }
-  })
+  });
   browser.bookmarks.onMoved.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onMoved", id, info)
       markLocalDirty();
-      browser.action.setBadgeText({ text: "!" });
-      browser.action.setBadgeBackgroundColor({ color: "#F00" });
+      browser.action.setBadgeText({ text: '!' });
+      browser.action.setBadgeBackgroundColor({ color: '#F00' });
     }
-  })
+  });
   browser.bookmarks.onRemoved.addListener(() => {
     if (curOperType === OperType.NONE) {
       // console.log("onRemoved", id, info)
       markLocalDirty();
-      browser.action.setBadgeText({ text: "!" });
-      browser.action.setBadgeBackgroundColor({ color: "#F00" });
+      browser.action.setBadgeText({ text: '!' });
+      browser.action.setBadgeBackgroundColor({ color: '#F00' });
       refreshLocalCount();
     }
-  })
+  });
 
   async function uploadBookmarks() {
     try {
-      let setting = await Setting.build()
+      let setting = await Setting.build();
       if (setting.githubToken == '') {
-        throw new Error("Gist Token Not Found");
+        throw new Error('Gist Token Not Found');
       }
       if (setting.gistID == '') {
-        throw new Error("Gist ID Not Found");
+        throw new Error('Gist ID Not Found');
       }
       let bookmarks = await getBookmarks();
       let syncdata = new SyncDataInfo();
@@ -133,48 +132,45 @@ export default defineBackground(() => {
       const response = await BookmarkService.update({
         files: {
           [GIST_FILE_NAME]: {
-            content: JSON.stringify(syncdata)
-          }
+            content: JSON.stringify(syncdata),
+          },
         },
-        description: GIST_FILE_NAME
+        description: GIST_FILE_NAME,
       });
       const count = getBookmarkCount(syncdata.bookmarks);
       await browser.storage.local.set({ remoteCount: count });
       await markSyncMarker();
       if (setting.enableNotify) {
         await browser.notifications.create({
-          type: "basic",
+          type: 'basic',
           iconUrl: iconLogo,
           title: browser.i18n.getMessage('uploadBookmarks'),
-          message: browser.i18n.getMessage('success')
+          message: browser.i18n.getMessage('success'),
         });
       }
-
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
       await browser.notifications.create({
-        type: "basic",
+        type: 'basic',
         iconUrl: iconLogo,
         title: browser.i18n.getMessage('uploadBookmarks'),
-        message: `${browser.i18n.getMessage('error')}：${getErrorMessage(error)}`
+        message: `${browser.i18n.getMessage('error')}：${getErrorMessage(error)}`,
       });
     }
   }
   async function downloadBookmarks(force = false): Promise<DownloadResult> {
     try {
-      let setting = await Setting.build()
+      let setting = await Setting.build();
       const currentGist = await BookmarkService.getCurrentGist();
       const syncdata = getSyncDataFromGist(currentGist);
       return await applySyncData(syncdata, force, setting);
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
       await browser.notifications.create({
-        type: "basic",
+        type: 'basic',
         iconUrl: iconLogo,
         title: browser.i18n.getMessage('downloadBookmarks'),
-        message: `${browser.i18n.getMessage('error')}：${getErrorMessage(error)}`
+        message: `${browser.i18n.getMessage('error')}：${getErrorMessage(error)}`,
       });
       return { status: 'error', message: getErrorMessage(error) };
     }
@@ -196,8 +192,8 @@ export default defineBackground(() => {
   }
 
   function getSyncDataFromGist(gist: CreatedGist): SyncDataInfo {
-    const file = gist?.files?.[GIST_FILE_NAME]
-      ?? LEGACY_GIST_FILE_NAMES.map((name: string) => gist?.files?.[name]).find(Boolean);
+    const file =
+      gist?.files?.[GIST_FILE_NAME] ?? LEGACY_GIST_FILE_NAMES.map((name: string) => gist?.files?.[name]).find(Boolean);
     if (!file) {
       throw new Error(`Gist File ${GIST_FILE_NAME} Not Found`);
     }
@@ -212,10 +208,10 @@ export default defineBackground(() => {
     if (syncdata.bookmarks == undefined || syncdata.bookmarks.length == 0) {
       if (setting.enableNotify) {
         await browser.notifications.create({
-          type: "basic",
+          type: 'basic',
           iconUrl: iconLogo,
           title: browser.i18n.getMessage('downloadBookmarks'),
-          message: `${browser.i18n.getMessage('error')}：Gist File ${GIST_FILE_NAME} is NULL`
+          message: `${browser.i18n.getMessage('error')}：Gist File ${GIST_FILE_NAME} is NULL`,
         });
       }
       return { status: 'error', message: `Gist File ${GIST_FILE_NAME} is NULL` };
@@ -241,10 +237,10 @@ export default defineBackground(() => {
     await markSyncMarker();
     if (setting.enableNotify) {
       await browser.notifications.create({
-        type: "basic",
+        type: 'basic',
         iconUrl: iconLogo,
         title: browser.i18n.getMessage('downloadBookmarks'),
-        message: browser.i18n.getMessage('success')
+        message: browser.i18n.getMessage('success'),
       });
     }
     return { status: 'success', localCount: remoteCount, remoteCount };
@@ -281,38 +277,33 @@ export default defineBackground(() => {
     };
   }
 
-  function findRootFolderId(
-    rootNodes: BookmarkInfo[],
-    folderType: BookmarkInfo['folderType'],
-    legacyIds: string[],
-  ) {
-    const typedNodes = folderType
-      ? rootNodes.filter(node => node.folderType === folderType)
-      : [];
-    return typedNodes.find(node => node.syncing)?.id
-      ?? typedNodes[0]?.id
-      ?? rootNodes.find(node => node.id != null && legacyIds.includes(node.id))?.id;
+  function findRootFolderId(rootNodes: BookmarkInfo[], folderType: BookmarkInfo['folderType'], legacyIds: string[]) {
+    const typedNodes = folderType ? rootNodes.filter((node) => node.folderType === folderType) : [];
+    return (
+      typedNodes.find((node) => node.syncing)?.id ??
+      typedNodes[0]?.id ??
+      rootNodes.find((node) => node.id != null && legacyIds.includes(node.id))?.id
+    );
   }
 
   async function clearBookmarkTree() {
     try {
       let bookmarks = await getBookmarks();
       let tempNodes: BookmarkInfo[] = [];
-      bookmarks[0].children?.forEach(c => {
-        c.children?.forEach(d => {
-          tempNodes.push(d)
-        })
+      bookmarks[0].children?.forEach((c) => {
+        c.children?.forEach((d) => {
+          tempNodes.push(d);
+        });
       });
       if (tempNodes.length > 0) {
         for (let node of tempNodes) {
           if (node.id) {
-            await browser.bookmarks.removeTree(node.id)
+            await browser.bookmarks.removeTree(node.id);
           }
         }
       }
       return true;
-    }
-    catch (error) {
+    } catch (error) {
       console.error(error);
       return false;
     }
@@ -329,7 +320,7 @@ export default defineBackground(() => {
         if (!parentId) {
           throw new Error(`Bookmark root folder not found: ${node.title}`);
         }
-        node.children?.forEach(child => child.parentId = parentId);
+        node.children?.forEach((child) => (child.parentId = parentId));
         await createBookmarkTree(node.children, createErrors);
         continue;
       }
@@ -338,10 +329,10 @@ export default defineBackground(() => {
         const result: Browser.bookmarks.BookmarkTreeNode = await browser.bookmarks.create({
           parentId: node.parentId,
           title: node.title,
-          url: node.url
+          url: node.url,
         });
         if (result.id && node.children && node.children.length > 0) {
-          node.children.forEach(child => child.parentId = result.id);
+          node.children.forEach((child) => (child.parentId = result.id));
           await createBookmarkTree(node.children, createErrors);
         }
       } catch (err) {
@@ -358,28 +349,23 @@ export default defineBackground(() => {
   function getDestinationRootId(rootType: RootBookmarksType) {
     switch (rootType) {
       case RootBookmarksType.MenuFolder:
-        return rootFolderIds[RootBookmarksType.MenuFolder]
-          ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
+        return rootFolderIds[RootBookmarksType.MenuFolder] ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
       case RootBookmarksType.MobileFolder:
-        return rootFolderIds[RootBookmarksType.MobileFolder]
-          ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
+        return rootFolderIds[RootBookmarksType.MobileFolder] ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
       case RootBookmarksType.ToolbarFolder:
-        return rootFolderIds[RootBookmarksType.ToolbarFolder]
-          ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
+        return rootFolderIds[RootBookmarksType.ToolbarFolder] ?? rootFolderIds[RootBookmarksType.UnfiledFolder];
       case RootBookmarksType.UnfiledFolder:
-        return rootFolderIds[RootBookmarksType.UnfiledFolder]
-          ?? rootFolderIds[RootBookmarksType.ToolbarFolder];
+        return rootFolderIds[RootBookmarksType.UnfiledFolder] ?? rootFolderIds[RootBookmarksType.ToolbarFolder];
     }
   }
 
   function getBookmarkCount(bookmarkList: BookmarkInfo[] | undefined) {
     let count = 0;
     if (bookmarkList) {
-      bookmarkList.forEach(c => {
+      bookmarkList.forEach((c) => {
         if (c.url) {
           count = count + 1;
-        }
-        else {
+        } else {
           count = count + getBookmarkCount(c.children);
         }
       });
@@ -387,40 +373,34 @@ export default defineBackground(() => {
     return count;
   }
 
-  function areBookmarkTreesEqual(
-    localBookmarks: ComparableBookmark[],
-    remoteBookmarks: ComparableBookmark[],
-  ) {
+  function areBookmarkTreesEqual(localBookmarks: ComparableBookmark[], remoteBookmarks: ComparableBookmark[]) {
     return JSON.stringify(localBookmarks) === JSON.stringify(remoteBookmarks);
   }
 
   function normalizeSavedBookmarksForCompare(bookmarkList: BookmarkInfo[] | undefined): ComparableBookmark[] {
     const normalizedBookmarks: ComparableBookmark[] = [];
     const rootIndex = new Map<string, ComparableBookmark>();
-    (bookmarkList ?? []).forEach(bookmark => {
-        const rootType = getCompareRootType(bookmark);
-        if (rootType && isEmptyRootBookmark(bookmark)) {
-          return;
-        }
-        const comparable = normalizeBookmarkForCompare(bookmark);
-        if (!rootType) {
-          normalizedBookmarks.push(comparable);
-          return;
-        }
-        comparable.title = getComparableRootTitle(rootType);
-        const existingRoot = rootIndex.get(comparable.title);
-        if (existingRoot) {
-          existingRoot.children = [
-            ...(existingRoot.children ?? []),
-            ...(comparable.children ?? []),
-          ];
-          return;
-        }
-        rootIndex.set(comparable.title, comparable);
+    (bookmarkList ?? []).forEach((bookmark) => {
+      const rootType = getCompareRootType(bookmark);
+      if (rootType && isEmptyRootBookmark(bookmark)) {
+        return;
+      }
+      const comparable = normalizeBookmarkForCompare(bookmark);
+      if (!rootType) {
         normalizedBookmarks.push(comparable);
-      });
-    return normalizedBookmarks.sort((left, right) =>
-      getRootCompareOrder(left.title) - getRootCompareOrder(right.title)
+        return;
+      }
+      comparable.title = getComparableRootTitle(rootType);
+      const existingRoot = rootIndex.get(comparable.title);
+      if (existingRoot) {
+        existingRoot.children = [...(existingRoot.children ?? []), ...(comparable.children ?? [])];
+        return;
+      }
+      rootIndex.set(comparable.title, comparable);
+      normalizedBookmarks.push(comparable);
+    });
+    return normalizedBookmarks.sort(
+      (left, right) => getRootCompareOrder(left.title) - getRootCompareOrder(right.title)
     );
   }
 
@@ -439,14 +419,13 @@ export default defineBackground(() => {
   }
 
   function isEmptyRootBookmark(bookmark: BookmarkInfo) {
-    return getCompareRootType(bookmark) != null
-      && !bookmark.url
-      && (!bookmark.children || bookmark.children.length === 0);
+    return (
+      getCompareRootType(bookmark) != null && !bookmark.url && (!bookmark.children || bookmark.children.length === 0)
+    );
   }
 
   function getCompareRootType(bookmark: BookmarkInfo): RootBookmarksType | undefined {
-    return getRootBookmarkType(bookmark)
-      ?? (isRootBookmarkType(bookmark.title) ? bookmark.title : undefined);
+    return getRootBookmarkType(bookmark) ?? (isRootBookmarkType(bookmark.title) ? bookmark.title : undefined);
   }
 
   function getComparableRootTitle(rootType: RootBookmarksType) {
@@ -481,9 +460,11 @@ export default defineBackground(() => {
   }
 
   function hasComparableNodeData(bookmark: ComparableBookmark): boolean {
-    return Boolean(bookmark.url)
-      || Boolean(bookmark.children && bookmark.children.length > 0)
-      || !isRootBookmarkType(bookmark.title);
+    return (
+      Boolean(bookmark.url) ||
+      Boolean(bookmark.children && bookmark.children.length > 0) ||
+      !isRootBookmarkType(bookmark.title)
+    );
   }
 
   async function refreshLocalCount() {
@@ -491,7 +472,6 @@ export default defineBackground(() => {
     const count = getBookmarkCount(bookmarkList);
     await browser.storage.local.set({ localCount: count });
   }
-
 
   function formatBookmarks(bookmarks: BookmarkInfo[]): BookmarkInfo[] | undefined {
     if (bookmarks[0].children) {
@@ -542,7 +522,7 @@ export default defineBackground(() => {
     b.type = undefined;
     b.unmodifiable = undefined;
     if (b.children && b.children.length > 0) {
-      b.children?.map(c => format(c))
+      b.children?.map((c) => format(c));
     }
     return b;
   }
@@ -562,5 +542,4 @@ export default defineBackground(() => {
       }
   }
   */
-
 });

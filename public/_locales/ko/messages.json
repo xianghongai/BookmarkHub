@@ -1,114 +1,114 @@
 {
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "GitHub Gist를 사용한 간단한 북마크 동기화",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "북마크 업로드",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "북마크 다운로드",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "북마크 동기화",
-        "description": ""
-    },
-    "settings": {
-        "message": "설정",
-        "description": ""
-    },
-    "help": {
-        "message": "도움말",
-        "description": ""
-    },
-    "localCount": {
-        "message": "로컬 북마크 수",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "원격 북마크 수",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "북마크가 다릅니다",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "로컬 북마크와 원격 북마크가 다릅니다. 계속하면 로컬 북마크를 교체합니다.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "로컬 교체",
-        "description": ""
-    },
-    "cancel": {
-        "message": "취소",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "북마크가 이미 동기화되어 있습니다",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "GitHub 토큰",
-        "description": ""
-    },
-    "gistID": {
-        "message": "Gist ID",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "연결 테스트",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "비공개 Gist 만들기",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "Gist ID가 이미 설정되어 있습니다",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "Gist는 비공개여야 합니다",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "알림 활성화",
-        "description": ""
-    },
-    "success": {
-        "message": "성공",
-        "description": ""
-    },
-    "failed": {
-        "message": "실패",
-        "description": ""
-    },
-    "error": {
-        "message": "오류",
-        "description": ""
-    },
-    "author": {
-        "message": "작성자",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "로컬 브라우저의 모든 북마크를 서버로 업로드",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "먼저 로컬 브라우저의 북마크를 삭제한 후, 서버의 모든 북마크를 로컬 브라우저로 다운로드",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "서버의 모든 북마크를 로컬 브라우저에 병합한 후, 서버로 업로드",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "GitHub Gist를 사용한 간단한 북마크 동기화",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "북마크 업로드",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "북마크 다운로드",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "북마크 동기화",
+    "description": ""
+  },
+  "settings": {
+    "message": "설정",
+    "description": ""
+  },
+  "help": {
+    "message": "도움말",
+    "description": ""
+  },
+  "localCount": {
+    "message": "로컬 북마크 수",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "원격 북마크 수",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "북마크가 다릅니다",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "로컬 북마크와 원격 북마크가 다릅니다. 계속하면 로컬 북마크를 교체합니다.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "로컬 교체",
+    "description": ""
+  },
+  "cancel": {
+    "message": "취소",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "북마크가 이미 동기화되어 있습니다",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "GitHub 토큰",
+    "description": ""
+  },
+  "gistID": {
+    "message": "Gist ID",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "연결 테스트",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "비공개 Gist 만들기",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "Gist ID가 이미 설정되어 있습니다",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "Gist는 비공개여야 합니다",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "알림 활성화",
+    "description": ""
+  },
+  "success": {
+    "message": "성공",
+    "description": ""
+  },
+  "failed": {
+    "message": "실패",
+    "description": ""
+  },
+  "error": {
+    "message": "오류",
+    "description": ""
+  },
+  "author": {
+    "message": "작성자",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "로컬 브라우저의 모든 북마크를 서버로 업로드",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "먼저 로컬 브라우저의 북마크를 삭제한 후, 서버의 모든 북마크를 로컬 브라우저로 다운로드",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "서버의 모든 북마크를 로컬 브라우저에 병합한 후, 서버로 업로드",
+    "description": ""
+  }
 }

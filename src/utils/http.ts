@@ -1,5 +1,5 @@
-import ky from 'ky'
-import { Setting } from './setting'
+import ky from 'ky';
+import { Setting } from './setting';
 
 export const http = ky.create({
   prefix: 'https://api.github.com',
@@ -14,7 +14,7 @@ export const http = ky.create({
         request.headers.set('X-GitHub-Api-Version', `2022-11-28`);
         request.headers.set('Accept', `application/vnd.github+json`);
         request.headers.set('cache', 'no-store');
-      }
-    ]
-  }
+      },
+    ],
+  },
 });

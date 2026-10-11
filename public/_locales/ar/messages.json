@@ -1,114 +1,114 @@
 {
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "مزامنة بسيطة للعلامات المرجعية عبر GitHub Gist",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "رفع العلامات المرجعية",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "تنزيل العلامات المرجعية",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "مزامنة العلامات المرجعية",
-        "description": ""
-    },
-    "settings": {
-        "message": "الإعدادات",
-        "description": ""
-    },
-    "help": {
-        "message": "المساعدة",
-        "description": ""
-    },
-    "localCount": {
-        "message": "عدد العلامات المرجعية المحلية",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "عدد العلامات المرجعية البعيدة",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "العلامات المرجعية مختلفة",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "تختلف العلامات المرجعية المحلية والبعيدة. المتابعة ستستبدل العلامات المحلية.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "استبدال المحلي",
-        "description": ""
-    },
-    "cancel": {
-        "message": "إلغاء",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "العلامات المرجعية متزامنة بالفعل",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "رمز GitHub",
-        "description": ""
-    },
-    "gistID": {
-        "message": "معرف Gist",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "اختبار الاتصال",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "إنشاء Gist خاص",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "تم تعيين معرف Gist بالفعل",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "يجب أن يكون Gist خاصًا",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "تمكين الإشعارات",
-        "description": ""
-    },
-    "success": {
-        "message": "نجاح",
-        "description": ""
-    },
-    "failed": {
-        "message": "فشل",
-        "description": ""
-    },
-    "error": {
-        "message": "خطأ",
-        "description": ""
-    },
-    "author": {
-        "message": "المؤلف",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "رفع جميع العلامات المرجعية في المتصفح المحلي إلى الخادم",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "أزل العلامات المرجعية في المتصفح المحلي أولاً، ثم قم بتنزيل جميع العلامات المرجعية على الخادم إلى المتصفح المحلي",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "دمج جميع العلامات المرجعية على الخادم في المتصفح المحلي، ثم قم بتحميلها إلى الخادم",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "مزامنة بسيطة للعلامات المرجعية عبر GitHub Gist",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "رفع العلامات المرجعية",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "تنزيل العلامات المرجعية",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "مزامنة العلامات المرجعية",
+    "description": ""
+  },
+  "settings": {
+    "message": "الإعدادات",
+    "description": ""
+  },
+  "help": {
+    "message": "المساعدة",
+    "description": ""
+  },
+  "localCount": {
+    "message": "عدد العلامات المرجعية المحلية",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "عدد العلامات المرجعية البعيدة",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "العلامات المرجعية مختلفة",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "تختلف العلامات المرجعية المحلية والبعيدة. المتابعة ستستبدل العلامات المحلية.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "استبدال المحلي",
+    "description": ""
+  },
+  "cancel": {
+    "message": "إلغاء",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "العلامات المرجعية متزامنة بالفعل",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "رمز GitHub",
+    "description": ""
+  },
+  "gistID": {
+    "message": "معرف Gist",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "اختبار الاتصال",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "إنشاء Gist خاص",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "تم تعيين معرف Gist بالفعل",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "يجب أن يكون Gist خاصًا",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "تمكين الإشعارات",
+    "description": ""
+  },
+  "success": {
+    "message": "نجاح",
+    "description": ""
+  },
+  "failed": {
+    "message": "فشل",
+    "description": ""
+  },
+  "error": {
+    "message": "خطأ",
+    "description": ""
+  },
+  "author": {
+    "message": "المؤلف",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "رفع جميع العلامات المرجعية في المتصفح المحلي إلى الخادم",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "أزل العلامات المرجعية في المتصفح المحلي أولاً، ثم قم بتنزيل جميع العلامات المرجعية على الخادم إلى المتصفح المحلي",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "دمج جميع العلامات المرجعية على الخادم في المتصفح المحلي، ثم قم بتحميلها إلى الخادم",
+    "description": ""
+  }
 }

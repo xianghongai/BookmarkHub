@@ -1,114 +1,114 @@
 {
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "Synchronisation simple des signets via GitHub Gist",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "Télécharger les signets",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "Télécharger les signets",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "Synchroniser les signets",
-        "description": ""
-    },
-    "settings": {
-        "message": "Paramètres",
-        "description": ""
-    },
-    "help": {
-        "message": "Aide",
-        "description": ""
-    },
-    "localCount": {
-        "message": "Nombre de signets locaux",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "Nombre de signets distants",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "Les signets diffèrent",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "Les signets locaux et distants sont différents. Continuer remplacera les signets locaux.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "Remplacer local",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Annuler",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "Les signets sont déjà synchronisés",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "Jetons GitHub",
-        "description": ""
-    },
-    "gistID": {
-        "message": "ID Gist",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "Tester la connexion",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "Créer un Gist privé",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "L'ID Gist est déjà défini",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "Le Gist doit être privé",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "Activer les notifications",
-        "description": ""
-    },
-    "success": {
-        "message": "Succès",
-        "description": ""
-    },
-    "failed": {
-        "message": "Échoué",
-        "description": ""
-    },
-    "error": {
-        "message": "Erreur",
-        "description": ""
-    },
-    "author": {
-        "message": "Auteur",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "Télécharger tous les signets du navigateur local vers le serveur",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "Supprimez d'abord les signets du navigateur local, puis téléchargez tous les signets du serveur vers le navigateur local",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "Fusionnez tous les signets du serveur dans le navigateur local, puis téléchargez-les vers le serveur",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "Synchronisation simple des signets via GitHub Gist",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "Télécharger les signets",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "Télécharger les signets",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "Synchroniser les signets",
+    "description": ""
+  },
+  "settings": {
+    "message": "Paramètres",
+    "description": ""
+  },
+  "help": {
+    "message": "Aide",
+    "description": ""
+  },
+  "localCount": {
+    "message": "Nombre de signets locaux",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "Nombre de signets distants",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "Les signets diffèrent",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "Les signets locaux et distants sont différents. Continuer remplacera les signets locaux.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "Remplacer local",
+    "description": ""
+  },
+  "cancel": {
+    "message": "Annuler",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "Les signets sont déjà synchronisés",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "Jetons GitHub",
+    "description": ""
+  },
+  "gistID": {
+    "message": "ID Gist",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "Tester la connexion",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "Créer un Gist privé",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "L'ID Gist est déjà défini",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "Le Gist doit être privé",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "Activer les notifications",
+    "description": ""
+  },
+  "success": {
+    "message": "Succès",
+    "description": ""
+  },
+  "failed": {
+    "message": "Échoué",
+    "description": ""
+  },
+  "error": {
+    "message": "Erreur",
+    "description": ""
+  },
+  "author": {
+    "message": "Auteur",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "Télécharger tous les signets du navigateur local vers le serveur",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "Supprimez d'abord les signets du navigateur local, puis téléchargez tous les signets du serveur vers le navigateur local",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "Fusionnez tous les signets du serveur dans le navigateur local, puis téléchargez-les vers le serveur",
+    "description": ""
+  }
 }

@@ -1,114 +1,114 @@
 {
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "Sincronización sencilla de marcadores mediante GitHub Gist",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "Subir marcadores",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "Descargar marcadores",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "Sincronizar marcadores",
-        "description": ""
-    },
-    "settings": {
-        "message": "Configuración",
-        "description": ""
-    },
-    "help": {
-        "message": "Ayuda",
-        "description": ""
-    },
-    "localCount": {
-        "message": "Cantidad de marcadores locales",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "Cantidad de marcadores remotos",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "Los marcadores son diferentes",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "Los marcadores locales y remotos son diferentes. Continuar reemplazará los marcadores locales.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "Reemplazar local",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancelar",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "Los marcadores ya están sincronizados",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "Token de GitHub",
-        "description": ""
-    },
-    "gistID": {
-        "message": "ID de Gist",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "Probar conexión",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "Crear Gist privado",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "El ID de Gist ya está configurado",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "El Gist debe ser privado",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "Activar notificaciones",
-        "description": ""
-    },
-    "success": {
-        "message": "Éxito",
-        "description": ""
-    },
-    "failed": {
-        "message": "Fracaso",
-        "description": ""
-    },
-    "error": {
-        "message": "Error",
-        "description": ""
-    },
-    "author": {
-        "message": "Autor",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "Subir todos los marcadores del navegador local al servidor",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "Eliminar primero los marcadores del navegador local y luego descargar todos los marcadores del servidor al navegador local",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "Combinar todos los marcadores del servidor en el navegador local y luego subirlos al servidor",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "Sincronización sencilla de marcadores mediante GitHub Gist",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "Subir marcadores",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "Descargar marcadores",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "Sincronizar marcadores",
+    "description": ""
+  },
+  "settings": {
+    "message": "Configuración",
+    "description": ""
+  },
+  "help": {
+    "message": "Ayuda",
+    "description": ""
+  },
+  "localCount": {
+    "message": "Cantidad de marcadores locales",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "Cantidad de marcadores remotos",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "Los marcadores son diferentes",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "Los marcadores locales y remotos son diferentes. Continuar reemplazará los marcadores locales.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "Reemplazar local",
+    "description": ""
+  },
+  "cancel": {
+    "message": "Cancelar",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "Los marcadores ya están sincronizados",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "Token de GitHub",
+    "description": ""
+  },
+  "gistID": {
+    "message": "ID de Gist",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "Probar conexión",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "Crear Gist privado",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "El ID de Gist ya está configurado",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "El Gist debe ser privado",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "Activar notificaciones",
+    "description": ""
+  },
+  "success": {
+    "message": "Éxito",
+    "description": ""
+  },
+  "failed": {
+    "message": "Fracaso",
+    "description": ""
+  },
+  "error": {
+    "message": "Error",
+    "description": ""
+  },
+  "author": {
+    "message": "Autor",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "Subir todos los marcadores del navegador local al servidor",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "Eliminar primero los marcadores del navegador local y luego descargar todos los marcadores del servidor al navegador local",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "Combinar todos los marcadores del servidor en el navegador local y luego subirlos al servidor",
+    "description": ""
+  }
 }

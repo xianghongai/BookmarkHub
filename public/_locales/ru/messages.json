@@ -1,114 +1,114 @@
 ﻿{
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "Простая синхронизация закладок через GitHub Gist",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "Выгрузить закладки",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "Скачать закладки",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "Синхронизировать закладки",
-        "description": ""
-    },
-    "settings": {
-        "message": "Настройки",
-        "description": ""
-    },
-    "help": {
-        "message": "Помощь",
-        "description": ""
-    },
-    "localCount": {
-        "message": "Количество локальных закладок",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "Количество закладок на сервере",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "Закладки отличаются",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "Локальные и удаленные закладки отличаются. Продолжение заменит локальные закладки.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "Заменить локальные",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Отмена",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "Закладки уже синхронизированы",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "Github Token",
-        "description": ""
-    },
-    "gistID": {
-        "message": "Gist ID",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "Проверить соединение",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "Создать секретный Gist",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "Gist ID уже указан",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "Gist должен быть секретным",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "Включить уведомления",
-        "description": ""
-    },
-    "success": {
-        "message": "Выполнено",
-        "description": ""
-    },
-    "failed": {
-        "message": "Сбой",
-        "description": ""
-    },
-    "error": {
-        "message": "Ошибка",
-        "description": ""
-    },
-    "author": {
-        "message": "Разработчик",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "Выгрузить все закладки из браузера на сервер",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "Сначала закладки в браузере очищаются, затем скачиваются с сервера",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "Объединить закладки на сервере и браузере, а затем выгрузить их на сервер",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "Простая синхронизация закладок через GitHub Gist",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "Выгрузить закладки",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "Скачать закладки",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "Синхронизировать закладки",
+    "description": ""
+  },
+  "settings": {
+    "message": "Настройки",
+    "description": ""
+  },
+  "help": {
+    "message": "Помощь",
+    "description": ""
+  },
+  "localCount": {
+    "message": "Количество локальных закладок",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "Количество закладок на сервере",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "Закладки отличаются",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "Локальные и удаленные закладки отличаются. Продолжение заменит локальные закладки.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "Заменить локальные",
+    "description": ""
+  },
+  "cancel": {
+    "message": "Отмена",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "Закладки уже синхронизированы",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "Github Token",
+    "description": ""
+  },
+  "gistID": {
+    "message": "Gist ID",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "Проверить соединение",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "Создать секретный Gist",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "Gist ID уже указан",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "Gist должен быть секретным",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "Включить уведомления",
+    "description": ""
+  },
+  "success": {
+    "message": "Выполнено",
+    "description": ""
+  },
+  "failed": {
+    "message": "Сбой",
+    "description": ""
+  },
+  "error": {
+    "message": "Ошибка",
+    "description": ""
+  },
+  "author": {
+    "message": "Разработчик",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "Выгрузить все закладки из браузера на сервер",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "Сначала закладки в браузере очищаются, затем скачиваются с сервера",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "Объединить закладки на сервере и браузере, а затем выгрузить их на сервер",
+    "description": ""
+  }
 }

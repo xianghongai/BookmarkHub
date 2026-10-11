@@ -2,24 +2,24 @@ import OptionsSync from 'webext-options-sync';
 /* global OptionsSync */
 
 export default new OptionsSync({
-    defaults: {
-        githubToken: '',
-        gistID: '',
-        enableNotify: true,
+  defaults: {
+    githubToken: '',
+    gistID: '',
+    enableNotify: true,
+  },
+
+  // List of functions that are called when the extension is updated
+  migrations: [
+    (savedOptions, currentDefaults) => {
+      // Perhaps it was renamed
+      // if (savedOptions.colour) {
+      //     savedOptions.color = savedOptions.colour;
+      //delete savedOptions.colour;
+      // }
     },
 
-    // List of functions that are called when the extension is updated
-    migrations: [
-        (savedOptions, currentDefaults) => {
-            // Perhaps it was renamed
-            // if (savedOptions.colour) {
-            //     savedOptions.color = savedOptions.colour;
-            //delete savedOptions.colour;
-            // }
-        },
-
-        // Integrated utility that drops any properties that don't appear in the defaults
-        OptionsSync.migrations.removeUnused
-    ],
-    logging: false
+    // Integrated utility that drops any properties that don't appear in the defaults
+    OptionsSync.migrations.removeUnused,
+  ],
+  logging: false,
 });

@@ -1,114 +1,114 @@
 {
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "Sincronização simples de favoritos via GitHub Gist",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "Enviar favoritos",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "Baixar favoritos",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "Sincronizar favoritos",
-        "description": ""
-    },
-    "settings": {
-        "message": "Configurações",
-        "description": ""
-    },
-    "help": {
-        "message": "Ajuda",
-        "description": ""
-    },
-    "localCount": {
-        "message": "Quantidade de favoritos locais",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "Quantidade de favoritos remotos",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "Os favoritos são diferentes",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "Os favoritos locais e remotos são diferentes. Continuar substituirá os favoritos locais.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "Substituir local",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Cancelar",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "Os favoritos já estão sincronizados",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "Token do GitHub",
-        "description": ""
-    },
-    "gistID": {
-        "message": "ID do Gist",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "Testar conexão",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "Criar Gist privado",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "O ID do Gist já está definido",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "O Gist deve ser privado",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "Ativar notificações",
-        "description": ""
-    },
-    "success": {
-        "message": "Sucesso",
-        "description": ""
-    },
-    "failed": {
-        "message": "Falha",
-        "description": ""
-    },
-    "error": {
-        "message": "Erro",
-        "description": ""
-    },
-    "author": {
-        "message": "Autor",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "Enviar todos os favoritos do navegador local para o servidor",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "Remover primeiro os favoritos do navegador local e depois baixar todos os favoritos do servidor para o navegador local",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "Combinar todos os favoritos do servidor no navegador local e depois enviar para o servidor",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "Sincronização simples de favoritos via GitHub Gist",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "Enviar favoritos",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "Baixar favoritos",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "Sincronizar favoritos",
+    "description": ""
+  },
+  "settings": {
+    "message": "Configurações",
+    "description": ""
+  },
+  "help": {
+    "message": "Ajuda",
+    "description": ""
+  },
+  "localCount": {
+    "message": "Quantidade de favoritos locais",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "Quantidade de favoritos remotos",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "Os favoritos são diferentes",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "Os favoritos locais e remotos são diferentes. Continuar substituirá os favoritos locais.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "Substituir local",
+    "description": ""
+  },
+  "cancel": {
+    "message": "Cancelar",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "Os favoritos já estão sincronizados",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "Token do GitHub",
+    "description": ""
+  },
+  "gistID": {
+    "message": "ID do Gist",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "Testar conexão",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "Criar Gist privado",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "O ID do Gist já está definido",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "O Gist deve ser privado",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "Ativar notificações",
+    "description": ""
+  },
+  "success": {
+    "message": "Sucesso",
+    "description": ""
+  },
+  "failed": {
+    "message": "Falha",
+    "description": ""
+  },
+  "error": {
+    "message": "Erro",
+    "description": ""
+  },
+  "author": {
+    "message": "Autor",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "Enviar todos os favoritos do navegador local para o servidor",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "Remover primeiro os favoritos do navegador local e depois baixar todos os favoritos do servidor para o navegador local",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "Combinar todos os favoritos do servidor no navegador local e depois enviar para o servidor",
+    "description": ""
+  }
 }

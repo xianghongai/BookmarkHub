@@ -1,114 +1,114 @@
 {
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "GitHub Gist を使用したシンプルなブックマーク同期",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "ブックマークをアップロード",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "ブックマークをダウンロード",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "ブックマークを同期",
-        "description": ""
-    },
-    "settings": {
-        "message": "設定",
-        "description": ""
-    },
-    "help": {
-        "message": "ヘルプ",
-        "description": ""
-    },
-    "localCount": {
-        "message": "ローカルのブックマーク数",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "リモートのブックマーク数",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "ブックマークが異なります",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "ローカルとリモートのブックマークが異なります。続行するとローカルのブックマークを置き換えます。",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "ローカルを置換",
-        "description": ""
-    },
-    "cancel": {
-        "message": "キャンセル",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "ブックマークはすでに同期済みです",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "GitHub トークン",
-        "description": ""
-    },
-    "gistID": {
-        "message": "Gist ID",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "接続をテスト",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "非公開 Gist を作成",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "Gist ID はすでに設定されています",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "Gist は非公開である必要があります",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "通知を有効にする",
-        "description": ""
-    },
-    "success": {
-        "message": "成功",
-        "description": ""
-    },
-    "failed": {
-        "message": "失敗",
-        "description": ""
-    },
-    "error": {
-        "message": "エラー",
-        "description": ""
-    },
-    "author": {
-        "message": "著者",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "ローカルブラウザの全てのブックマークをサーバーにアップロード",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "まずローカルブラウザのブックマークを削除し、次にサーバー上の全てのブックマークをローカルブラウザにダウンロード",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "サーバー上の全てのブックマークをローカルブラウザにマージし、次にサーバーにアップロード",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "GitHub Gist を使用したシンプルなブックマーク同期",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "ブックマークをアップロード",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "ブックマークをダウンロード",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "ブックマークを同期",
+    "description": ""
+  },
+  "settings": {
+    "message": "設定",
+    "description": ""
+  },
+  "help": {
+    "message": "ヘルプ",
+    "description": ""
+  },
+  "localCount": {
+    "message": "ローカルのブックマーク数",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "リモートのブックマーク数",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "ブックマークが異なります",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "ローカルとリモートのブックマークが異なります。続行するとローカルのブックマークを置き換えます。",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "ローカルを置換",
+    "description": ""
+  },
+  "cancel": {
+    "message": "キャンセル",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "ブックマークはすでに同期済みです",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "GitHub トークン",
+    "description": ""
+  },
+  "gistID": {
+    "message": "Gist ID",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "接続をテスト",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "非公開 Gist を作成",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "Gist ID はすでに設定されています",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "Gist は非公開である必要があります",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "通知を有効にする",
+    "description": ""
+  },
+  "success": {
+    "message": "成功",
+    "description": ""
+  },
+  "failed": {
+    "message": "失敗",
+    "description": ""
+  },
+  "error": {
+    "message": "エラー",
+    "description": ""
+  },
+  "author": {
+    "message": "著者",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "ローカルブラウザの全てのブックマークをサーバーにアップロード",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "まずローカルブラウザのブックマークを削除し、次にサーバー上の全てのブックマークをローカルブラウザにダウンロード",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "サーバー上の全てのブックマークをローカルブラウザにマージし、次にサーバーにアップロード",
+    "description": ""
+  }
 }

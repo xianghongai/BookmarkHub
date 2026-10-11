@@ -1,114 +1,114 @@
 {
-    "extensionName": {
-        "message": "Bookmark Sync (Gist)",
-        "description": ""
-    },
-    "extensionDescription": {
-        "message": "Sincronizzazione semplice dei segnalibri tramite GitHub Gist",
-        "description": ""
-    },
-    "uploadBookmarks": {
-        "message": "Carica segnalibri",
-        "description": ""
-    },
-    "downloadBookmarks": {
-        "message": "Scarica segnalibri",
-        "description": ""
-    },
-    "syncBookmarks": {
-        "message": "Sincronizza segnalibri",
-        "description": ""
-    },
-    "settings": {
-        "message": "Impostazioni",
-        "description": ""
-    },
-    "help": {
-        "message": "Aiuto",
-        "description": ""
-    },
-    "localCount": {
-        "message": "Numero di segnalibri locali",
-        "description": ""
-    },
-    "remoteCount": {
-        "message": "Numero di segnalibri remoti",
-        "description": ""
-    },
-    "bookmarkConflictTitle": {
-        "message": "I segnalibri sono diversi",
-        "description": ""
-    },
-    "bookmarkConflictDesc": {
-        "message": "I segnalibri locali e remoti sono diversi. Continuando, i segnalibri locali verranno sostituiti.",
-        "description": ""
-    },
-    "replaceLocalBookmarks": {
-        "message": "Sostituisci locale",
-        "description": ""
-    },
-    "cancel": {
-        "message": "Annulla",
-        "description": ""
-    },
-    "alreadySynced": {
-        "message": "I segnalibri sono già sincronizzati",
-        "description": ""
-    },
-    "githubToken": {
-        "message": "Token GitHub",
-        "description": ""
-    },
-    "gistID": {
-        "message": "ID Gist",
-        "description": ""
-    },
-    "testConnection": {
-        "message": "Testa connessione",
-        "description": ""
-    },
-    "createPrivateGist": {
-        "message": "Crea Gist privato",
-        "description": ""
-    },
-    "gistIdAlreadySet": {
-        "message": "L'ID Gist è già impostato",
-        "description": ""
-    },
-    "gistMustBePrivate": {
-        "message": "Il Gist deve essere privato",
-        "description": ""
-    },
-    "enableNotifications": {
-        "message": "Abilita notifiche",
-        "description": ""
-    },
-    "success": {
-        "message": "Successo",
-        "description": ""
-    },
-    "failed": {
-        "message": "Fallimento",
-        "description": ""
-    },
-    "error": {
-        "message": "Errore",
-        "description": ""
-    },
-    "author": {
-        "message": "Autore",
-        "description": ""
-    },
-    "uploadBookmarksDesc": {
-        "message": "Carica tutti i segnalibri del browser locale sul server",
-        "description": ""
-    },
-    "downloadBookmarksDesc": {
-        "message": "Elimina prima i segnalibri del browser locale e poi scarica tutti i segnalibri dal server sul browser locale",
-        "description": ""
-    },
-    "syncBookmarksDesc": {
-        "message": "Unisci tutti i segnalibri del server nel browser locale e poi caricali sul server",
-        "description": ""
-    }
+  "extensionName": {
+    "message": "Bookmark Sync (Gist)",
+    "description": ""
+  },
+  "extensionDescription": {
+    "message": "Sincronizzazione semplice dei segnalibri tramite GitHub Gist",
+    "description": ""
+  },
+  "uploadBookmarks": {
+    "message": "Carica segnalibri",
+    "description": ""
+  },
+  "downloadBookmarks": {
+    "message": "Scarica segnalibri",
+    "description": ""
+  },
+  "syncBookmarks": {
+    "message": "Sincronizza segnalibri",
+    "description": ""
+  },
+  "settings": {
+    "message": "Impostazioni",
+    "description": ""
+  },
+  "help": {
+    "message": "Aiuto",
+    "description": ""
+  },
+  "localCount": {
+    "message": "Numero di segnalibri locali",
+    "description": ""
+  },
+  "remoteCount": {
+    "message": "Numero di segnalibri remoti",
+    "description": ""
+  },
+  "bookmarkConflictTitle": {
+    "message": "I segnalibri sono diversi",
+    "description": ""
+  },
+  "bookmarkConflictDesc": {
+    "message": "I segnalibri locali e remoti sono diversi. Continuando, i segnalibri locali verranno sostituiti.",
+    "description": ""
+  },
+  "replaceLocalBookmarks": {
+    "message": "Sostituisci locale",
+    "description": ""
+  },
+  "cancel": {
+    "message": "Annulla",
+    "description": ""
+  },
+  "alreadySynced": {
+    "message": "I segnalibri sono già sincronizzati",
+    "description": ""
+  },
+  "githubToken": {
+    "message": "Token GitHub",
+    "description": ""
+  },
+  "gistID": {
+    "message": "ID Gist",
+    "description": ""
+  },
+  "testConnection": {
+    "message": "Testa connessione",
+    "description": ""
+  },
+  "createPrivateGist": {
+    "message": "Crea Gist privato",
+    "description": ""
+  },
+  "gistIdAlreadySet": {
+    "message": "L'ID Gist è già impostato",
+    "description": ""
+  },
+  "gistMustBePrivate": {
+    "message": "Il Gist deve essere privato",
+    "description": ""
+  },
+  "enableNotifications": {
+    "message": "Abilita notifiche",
+    "description": ""
+  },
+  "success": {
+    "message": "Successo",
+    "description": ""
+  },
+  "failed": {
+    "message": "Fallimento",
+    "description": ""
+  },
+  "error": {
+    "message": "Errore",
+    "description": ""
+  },
+  "author": {
+    "message": "Autore",
+    "description": ""
+  },
+  "uploadBookmarksDesc": {
+    "message": "Carica tutti i segnalibri del browser locale sul server",
+    "description": ""
+  },
+  "downloadBookmarksDesc": {
+    "message": "Elimina prima i segnalibri del browser locale e poi scarica tutti i segnalibri dal server sul browser locale",
+    "description": ""
+  },
+  "syncBookmarksDesc": {
+    "message": "Unisci tutti i segnalibri del server nel browser locale e poi caricali sul server",
+    "description": ""
+  }
 }
