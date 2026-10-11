@@ -16,7 +16,7 @@ export default defineConfig({
     browser_specific_settings: browser === 'firefox'
       ? {
           gecko: {
-            id: '{9f637588-7cb6-48e0-8d3e-5f88ce2ca28d}',
+            id: '{f8e6167d-7457-4216-a338-a3f43f80f8c0}',
             data_collection_permissions: {
               required: ['bookmarksInfo'],
             },
