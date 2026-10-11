@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub-- - Sincronizzazione segnalibri",
+        "message": "Bookmark Sync (Gist)",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub--, sincronizzazione semplice dei segnalibri tramite GitHub Gist",
+        "message": "Sincronizzazione semplice dei segnalibri tramite GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {

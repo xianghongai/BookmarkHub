@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub-- - ブックマークを同期",
+        "message": "Bookmark Sync (Gist)",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub--、GitHub Gist を使用したシンプルなブックマーク同期",
+        "message": "GitHub Gist を使用したシンプルなブックマーク同期",
         "description": ""
     },
     "uploadBookmarks": {

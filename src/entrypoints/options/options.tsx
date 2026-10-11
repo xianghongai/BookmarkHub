@@ -181,7 +181,7 @@ const Popup: React.FC = () => {
                                 variant="outline-secondary"
                                 as="a"
                                 target="_blank"
-                                href="https://github.com/settings/personal-access-tokens/new?name=BookmarkHub--&description=BookmarkHub--%20bookmark%20sync&gists=write"
+                                href="https://github.com/settings/personal-access-tokens/new?name=Bookmark%20Sync%20%28Gist%29&description=Sync%20bookmarks%20via%20GitHub%20Gist&gists=write"
                                 size="sm"
                             >
                                 Get Token

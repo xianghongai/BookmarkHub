@@ -1,4 +1,4 @@
-# BookmarkHub--
+# Bookmark Sync (Gist)
 
 A minimal browser extension for syncing bookmarks through a private GitHub Gist.
 

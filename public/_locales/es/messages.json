@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub-- - Sincronización de marcadores",
+        "message": "Bookmark Sync (Gist)",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub--, sincronización sencilla de marcadores mediante GitHub Gist",
+        "message": "Sincronización sencilla de marcadores mediante GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {

@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub-- - مزامنة العلامات المرجعية",
+        "message": "Bookmark Sync (Gist)",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub--، مزامنة بسيطة للعلامات المرجعية عبر GitHub Gist",
+        "message": "مزامنة بسيطة للعلامات المرجعية عبر GitHub Gist",
         "description": ""
     },
     "uploadBookmarks": {

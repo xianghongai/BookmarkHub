@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="128" height="128" viewBox="0 0 128 128">
-  <title>BookmarkHub--</title>
+  <title>Bookmark Sync (Gist)</title>
   <!-- A bookmark ribbon carrying the GitHub mark: bookmarks synced through a GitHub Gist. -->
   <rect width="128" height="128" rx="28" fill="#2da44e"/>
   <g transform="translate(64 63.5) scale(1.22) translate(-64 -63.5)">

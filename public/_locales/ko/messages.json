@@ -1,10 +1,10 @@
 {
     "extensionName": {
-        "message": "BookmarkHub-- - 북마크 동기화",
+        "message": "Bookmark Sync (Gist)",
         "description": ""
     },
     "extensionDescription": {
-        "message": "BookmarkHub--, GitHub Gist를 사용한 간단한 북마크 동기화",
+        "message": "GitHub Gist를 사용한 간단한 북마크 동기화",
         "description": ""
     },
     "uploadBookmarks": {

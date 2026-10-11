@@ -31,7 +31,7 @@ class BookmarkService {
     async createPrivateGist() {
         return http.post('gists', {
             json: {
-                description: 'BookmarkHub--',
+                description: 'Bookmark Sync (Gist)',
                 public: false,
                 files: {
                     [GIST_FILE_NAME]: {

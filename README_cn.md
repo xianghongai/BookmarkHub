@@ -1,4 +1,4 @@
-# BookmarkHub--
+# Bookmark Sync (Gist)
 
 一个通过私有 GitHub Gist 同步书签的极简浏览器扩展。
 

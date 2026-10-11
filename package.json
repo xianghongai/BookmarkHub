@@ -1,5 +1,5 @@
 {
-  "name": "bookmarkhub--",
+  "name": "browser-bookmark-sync",
   "description": "Simple cross-browser bookmark sync using GitHub Gist",
   "keywords": [
     "bookmarks",
@@ -10,15 +10,15 @@
   "private": true,
   "version": "1.0.1",
   "type": "module",
-  "author": "BookmarkHub-- contributors",
+  "author": "Bookmark Sync (Gist) contributors",
   "license": "",
   "repository": {
     "type": "git",
-    "url": "https://github.com/xianghongai/BookmarkHub"
+    "url": "https://github.com/xianghongai/browser-bookmark-sync"
   },
-  "homepage": "https://github.com/xianghongai/BookmarkHub#readme",
+  "homepage": "https://github.com/xianghongai/browser-bookmark-sync#readme",
   "bugs": {
-    "url": "https://github.com/xianghongai/BookmarkHub/issues"
+    "url": "https://github.com/xianghongai/browser-bookmark-sync/issues"
   },
   "scripts": {
     "dev": "wxt -b chrome --mv3",
