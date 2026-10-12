@@ -59,6 +59,14 @@
     "message": "رمز GitHub",
     "description": ""
   },
+  "getToken": {
+    "message": "الحصول على رمز",
+    "description": ""
+  },
+  "githubTokenHint": {
+    "message": "يفتح الرابط GitHub مع تعبئة الاسم مسبقًا ومنح إذن \"Gists: Read and write\" فقط. اختر \"Expiration\" (مثل \"No expiration\")، ثم انقر \"Generate token\" والصق الرمز هنا.",
+    "description": ""
+  },
   "gistID": {
     "message": "معرف Gist",
     "description": ""

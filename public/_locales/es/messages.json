@@ -59,6 +59,14 @@
     "message": "Token de GitHub",
     "description": ""
   },
+  "getToken": {
+    "message": "Obtener token",
+    "description": ""
+  },
+  "githubTokenHint": {
+    "message": "El enlace abre GitHub con el nombre ya rellenado y solo el permiso \"Gists: Read and write\". Elige una \"Expiration\" (p. ej. \"No expiration\"), haz clic en \"Generate token\" y pega el token aquí.",
+    "description": ""
+  },
   "gistID": {
     "message": "ID de Gist",
     "description": ""

@@ -182,7 +182,9 @@ const Popup: React.FC = () => {
                 {...register('githubToken', {
                   onChange: resetConnectionStatus,
                 })}
-                type="text"
+                type="password"
+                autoComplete="off"
+                spellCheck={false}
                 placeholder="github token"
                 size="sm"
                 required
@@ -191,12 +193,14 @@ const Popup: React.FC = () => {
                 variant="outline-secondary"
                 as="a"
                 target="_blank"
+                rel="noreferrer"
                 href="https://github.com/settings/personal-access-tokens/new?name=Bookmark%20Sync%20%28Gist%29&description=Sync%20bookmarks%20via%20GitHub%20Gist&gists=write"
                 size="sm"
               >
-                Get Token
+                {browser.i18n.getMessage('getToken')}
               </Button>
             </InputGroup>
+            <Form.Text className="text-muted">{browser.i18n.getMessage('githubTokenHint')}</Form.Text>
           </Col>
         </Form.Group>
 

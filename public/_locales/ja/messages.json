@@ -59,6 +59,14 @@
     "message": "GitHub トークン",
     "description": ""
   },
+  "getToken": {
+    "message": "トークンを取得",
+    "description": ""
+  },
+  "githubTokenHint": {
+    "message": "リンクを開くと、名前が入力済みで \"Gists: Read and write\" 権限のみが付与された GitHub の画面が開きます。\"Expiration\"（例: \"No expiration\"）を選び、\"Generate token\" をクリックしてここに貼り付けてください。",
+    "description": ""
+  },
   "gistID": {
     "message": "Gist ID",
     "description": ""

@@ -59,6 +59,14 @@
     "message": "Jetons GitHub",
     "description": ""
   },
+  "getToken": {
+    "message": "Obtenir un jeton",
+    "description": ""
+  },
+  "githubTokenHint": {
+    "message": "Le lien ouvre GitHub avec le nom prérempli et uniquement l'autorisation \"Gists: Read and write\". Choisissez une \"Expiration\" (par ex. \"No expiration\"), cliquez sur \"Generate token\", puis collez le jeton ici.",
+    "description": ""
+  },
   "gistID": {
     "message": "ID Gist",
     "description": ""

@@ -59,6 +59,14 @@
     "message": "Github Token",
     "description": ""
   },
+  "getToken": {
+    "message": "获取 Token",
+    "description": ""
+  },
+  "githubTokenHint": {
+    "message": "链接会打开 GitHub 并预填名称，且只授予 \"Gists: Read and write\" 权限。请选择 \"Expiration\"（例如 \"No expiration\"），然后点击 \"Generate token\"，把生成的 Token 粘贴到这里。",
+    "description": ""
+  },
   "gistID": {
     "message": "Gist ID",
     "description": ""

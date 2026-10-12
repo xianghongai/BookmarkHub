@@ -59,6 +59,14 @@
     "message": "GitHub 토큰",
     "description": ""
   },
+  "getToken": {
+    "message": "토큰 받기",
+    "description": ""
+  },
+  "githubTokenHint": {
+    "message": "링크를 열면 이름이 미리 입력되고 \"Gists: Read and write\" 권한만 부여된 GitHub 페이지가 열립니다. \"Expiration\"(예: \"No expiration\")을 선택하고 \"Generate token\"을 클릭한 뒤 여기에 붙여넣으세요.",
+    "description": ""
+  },
   "gistID": {
     "message": "Gist ID",
     "description": ""
